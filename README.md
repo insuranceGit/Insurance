@@ -1,6 +1,6 @@
 # Instrucciones
 
-Para corresr las dependencias iniciales ejecute en el cmd el siguiente comando
+Para correr las dependencias iniciales ejecute en el cmd el siguiente comando
 
 > Yarn
 
