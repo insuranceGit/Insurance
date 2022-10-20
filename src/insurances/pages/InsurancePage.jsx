@@ -1,6 +1,7 @@
+import { Typography } from "@mui/material"
 
 export const InsurancePage = () => {
   return (
-    <div>InsurancePage</div>
+    <Typography  variant='h1'>InsurancePage</Typography>
   )
 }
