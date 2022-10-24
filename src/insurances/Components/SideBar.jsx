@@ -1,5 +1,5 @@
 import { Box, Divider, Drawer, Grid, Toolbar, Typography, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
-import { TurnedInNot } from '@mui/icons-material';
+import { InsertDriveFile, FormatListBulleted, CloudUpload, People } from '@mui/icons-material';
 import { Link as RouterLink } from "react-router-dom"
 
 export const SideBar = ({ drawerWidth = 240 }) => {
@@ -14,6 +14,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             sx={{
                 display: { xs: 'block' },
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: 'secondary.main'}
+
                 
             }}
         >
@@ -26,11 +27,15 @@ export const SideBar = ({ drawerWidth = 240 }) => {
         </Toolbar>
         <Divider />
 
-        <List>
-            <ListItem key={ 'Usuarios' } disablePadding>
+        <List 
+            sx={{
+                '& .MuiListItem-gutters:hover': {  backgroundColor: '#0E47A3 '}                
+            }}
+        >
+            <ListItem key={ 'Usuarios' } disablePadding >
                 <ListItemButton component={ RouterLink } to='/users'>
                     <ListItemIcon >
-                        <TurnedInNot style={{fill: "#79A1F5"}}/>
+                        <People style={{fill: "#79A1F5"}}/>
                     </ListItemIcon>
                     <Grid container>
                         <ListItemText primary={ 'Usuarios' } style={{color: "white"}} />
@@ -41,7 +46,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             <ListItem key={ 'Historial' } disablePadding >
                 <ListItemButton component={ RouterLink } to='/history'>
                     <ListItemIcon>
-                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                        <FormatListBulleted style={{fill: "#79A1F5"}} />
                     </ListItemIcon>
                     <Grid container>
                         <ListItemText primary={ 'Historial' } style={{color: "white"}} />
@@ -52,7 +57,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             <ListItem key={ 'Cargue masivo' } disablePadding>
                 <ListItemButton component={ RouterLink } to='/load'>
                     <ListItemIcon>
-                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                        <CloudUpload style={{fill: "#79A1F5"}} />
                     </ListItemIcon>
                     <Grid container>
                         <ListItemText primary={ 'Cargue masivo' } style={{color: "white"}} />
@@ -63,7 +68,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             <ListItem key={ 'Formulario' } disablePadding>
                 <ListItemButton component={ RouterLink } to='/form'>
                     <ListItemIcon>
-                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                        <InsertDriveFile style={{fill: "#79A1F5"}} />
                     </ListItemIcon>
                     <Grid container>
                         <ListItemText primary={ 'Formulario' } style={{color: "white"}} />
