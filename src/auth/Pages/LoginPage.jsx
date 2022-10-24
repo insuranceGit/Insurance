@@ -28,9 +28,13 @@ export const LoginPage = () => {
 
           <Grid container spacing={2} sx={{mb:2, mt:1}}>
             <Grid item xs={12} sm={6}>
+            <Link component={ RouterLink } style={{ textDecoration: 'none' }} to='/'>
               <Button variant='contained' fullWidth>
                 Login
               </Button>
+            </Link>
+              
+
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button variant='contained' fullWidth>

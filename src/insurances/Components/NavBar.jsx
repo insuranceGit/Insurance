@@ -1,5 +1,7 @@
 import { AppBar, IconButton, Toolbar, Grid,Typography } from "@mui/material"
-import { MenuOutlined, LogoutOutlined } from "@mui/icons-material"
+import { MenuOutlined, LogoutOutlined, Link } from "@mui/icons-material"
+import { Link as RouterLink } from "react-router-dom"
+
 
 export const NavBar = ({ drawerWidth = 240 }) => {
   return (
@@ -22,10 +24,12 @@ export const NavBar = ({ drawerWidth = 240 }) => {
 
             <Grid container direction='row' justifyContent='space-between' alignItems='center'>
                 <Typography variant="h6" noWrap component='div'>  </Typography>
-                <IconButton color="error">
-                    <LogoutOutlined/>
+                <IconButton component={ RouterLink } to='/auth/login'>
+                    <LogoutOutlined htmlColor="red"/>
                 </IconButton>
+                
             </Grid>
+
         </Toolbar>
 
     </AppBar>

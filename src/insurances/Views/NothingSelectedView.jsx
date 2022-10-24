@@ -8,13 +8,13 @@ export const NothingSelectedView = () => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ minHeight: 'calc(100vh - 110px)', backgroundColor: 'primary.main', borderRadius: 3 }}
+      sx={{ minHeight: 'calc(100vh - 110px)', backgroundColor: 'primary.sec', borderRadius: 3 }}
     >
       <Grid item xs={ 12 }>
-        <Warning sx={{fontSize:100, color:'white'}}/>          
+        <Warning sx={{fontSize:100, color:'black'}}/>          
       </Grid>
       <Grid item xs={ 12 }>
-        <Typography color='white' variant="h5">Vista no encontrada</Typography>          
+        <Typography color='black' variant="h5">Vista no encontrada</Typography>          
       </Grid>
 
     </Grid>

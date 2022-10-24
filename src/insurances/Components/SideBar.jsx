@@ -27,57 +27,49 @@ export const SideBar = ({ drawerWidth = 240 }) => {
         <Divider />
 
         <List>
-            <RouterLink to='/users' style={{ textDecoration: 'none', color:'white' }}> 
-                <ListItem key={ 'Usuarios' } disablePadding>
-                    <ListItemButton >
-                        <ListItemIcon >
-                            <TurnedInNot style={{fill: "#79A1F5"}}/>
-                        </ListItemIcon>
-                        <Grid container>
-                            <ListItemText primary={ 'Usuarios' } />
-                        </Grid>
-                    </ListItemButton>
-                </ListItem>
-            </RouterLink>
+            <ListItem key={ 'Usuarios' } disablePadding>
+                <ListItemButton component={ RouterLink } to='/users'>
+                    <ListItemIcon >
+                        <TurnedInNot style={{fill: "#79A1F5"}}/>
+                    </ListItemIcon>
+                    <Grid container>
+                        <ListItemText primary={ 'Usuarios' } style={{color: "white"}} />
+                    </Grid>
+                </ListItemButton>
+            </ListItem>
 
-            <RouterLink to='/history' style={{  textDecoration: 'none', color:'white'  }}> 
-                <ListItem key={ 'Historial' } disablePadding >
-                    <ListItemButton color="red">
-                        <ListItemIcon>
-                            <TurnedInNot style={{fill: "#79A1F5"}} />
-                        </ListItemIcon>
-                        <Grid container>
-                            <ListItemText primary={ 'Historial' } />
-                        </Grid>
-                    </ListItemButton>
-                </ListItem>
-            </RouterLink>
+            <ListItem key={ 'Historial' } disablePadding >
+                <ListItemButton component={ RouterLink } to='/history'>
+                    <ListItemIcon>
+                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                    </ListItemIcon>
+                    <Grid container>
+                        <ListItemText primary={ 'Historial' } style={{color: "white"}} />
+                    </Grid>
+                </ListItemButton>
+            </ListItem>
 
-            <RouterLink to='/load' style={{ textDecoration: 'none' , color:'white'  }}> 
-                <ListItem key={ 'Cargue masivo' } disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <TurnedInNot style={{fill: "#79A1F5"}} />
-                        </ListItemIcon>
-                        <Grid container>
-                            <ListItemText primary={ 'Cargue masivo' } />
-                        </Grid>
-                    </ListItemButton>
-                </ListItem>
-            </RouterLink>
+            <ListItem key={ 'Cargue masivo' } disablePadding>
+                <ListItemButton component={ RouterLink } to='/load'>
+                    <ListItemIcon>
+                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                    </ListItemIcon>
+                    <Grid container>
+                        <ListItemText primary={ 'Cargue masivo' } style={{color: "white"}} />
+                    </Grid>
+                </ListItemButton>
+            </ListItem>
 
-            <RouterLink to='/form' style={{ textDecoration: 'none' , color:'white'  }}> 
-                <ListItem key={ 'Formulario' } disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <TurnedInNot style={{fill: "#79A1F5"}} />
-                        </ListItemIcon>
-                        <Grid container>
-                            <ListItemText primary={ 'Formulario' } />
-                        </Grid>
-                    </ListItemButton>
-                </ListItem>
-            </RouterLink>
+            <ListItem key={ 'Formulario' } disablePadding>
+                <ListItemButton component={ RouterLink } to='/form'>
+                    <ListItemIcon>
+                        <TurnedInNot style={{fill: "#79A1F5"}} />
+                    </ListItemIcon>
+                    <Grid container>
+                        <ListItemText primary={ 'Formulario' } style={{color: "white"}} />
+                    </Grid>
+                </ListItemButton>
+            </ListItem>
         </List>
 
             
