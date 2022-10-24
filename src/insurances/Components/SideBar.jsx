@@ -13,34 +13,72 @@ export const SideBar = ({ drawerWidth = 240 }) => {
             open
             sx={{
                 display: { xs: 'block' },
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth}
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: 'secondary.main'}
+                
             }}
         >
 
         <Toolbar>
-            <Typography variant='h6' noWrap component='div'>
-                Nombre proyecto
+            <Typography variant='h6' noWrap component='div' color='white'>
+                AIR Seguros
             </Typography>
            
         </Toolbar>
         <Divider />
 
         <List>
-                {
-                    ['Usuarios','Historico','Cargue masivo','Formulario'].map( text => (
-                        <ListItem key={ text } disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <TurnedInNot />
-                                </ListItemIcon>
-                                <Grid container>
-                                    <ListItemText primary={ text } />
-                                </Grid>
-                            </ListItemButton>
-                        </ListItem>
-                    ))
-                }
-            </List>
+            <RouterLink to='/users' style={{ textDecoration: 'none', color:'white' }}> 
+                <ListItem key={ 'Usuarios' } disablePadding>
+                    <ListItemButton >
+                        <ListItemIcon >
+                            <TurnedInNot style={{fill: "#79A1F5"}}/>
+                        </ListItemIcon>
+                        <Grid container>
+                            <ListItemText primary={ 'Usuarios' } />
+                        </Grid>
+                    </ListItemButton>
+                </ListItem>
+            </RouterLink>
+
+            <RouterLink to='/history' style={{  textDecoration: 'none', color:'white'  }}> 
+                <ListItem key={ 'Historial' } disablePadding >
+                    <ListItemButton color="red">
+                        <ListItemIcon>
+                            <TurnedInNot style={{fill: "#79A1F5"}} />
+                        </ListItemIcon>
+                        <Grid container>
+                            <ListItemText primary={ 'Historial' } />
+                        </Grid>
+                    </ListItemButton>
+                </ListItem>
+            </RouterLink>
+
+            <RouterLink to='/load' style={{ textDecoration: 'none' , color:'white'  }}> 
+                <ListItem key={ 'Cargue masivo' } disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <TurnedInNot style={{fill: "#79A1F5"}} />
+                        </ListItemIcon>
+                        <Grid container>
+                            <ListItemText primary={ 'Cargue masivo' } />
+                        </Grid>
+                    </ListItemButton>
+                </ListItem>
+            </RouterLink>
+
+            <RouterLink to='/form' style={{ textDecoration: 'none' , color:'white'  }}> 
+                <ListItem key={ 'Formulario' } disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <TurnedInNot style={{fill: "#79A1F5"}} />
+                        </ListItemIcon>
+                        <Grid container>
+                            <ListItemText primary={ 'Formulario' } />
+                        </Grid>
+                    </ListItemButton>
+                </ListItem>
+            </RouterLink>
+        </List>
 
             
 

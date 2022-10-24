@@ -7,7 +7,8 @@ export const NavBar = ({ drawerWidth = 240 }) => {
         position='fixed'
         sx={{ 
             width: { sm: `calc(100% - ${ drawerWidth }px)` },
-            ml: { sm: `${ drawerWidth }px` }
+            ml: { sm: `${ drawerWidth }px` },
+            backgroundColor: 'secondary.sec'
         }}
     >
         <Toolbar>
@@ -20,7 +21,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
             </IconButton>
 
             <Grid container direction='row' justifyContent='space-between' alignItems='center'>
-                <Typography variant="h6" noWrap component='div'> Project </Typography>
+                <Typography variant="h6" noWrap component='div'>  </Typography>
                 <IconButton color="error">
                     <LogoutOutlined/>
                 </IconButton>
