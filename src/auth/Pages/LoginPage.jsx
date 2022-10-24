@@ -1,27 +1,14 @@
+import { Link as RouterLink } from "react-router-dom"
 
-import { Grid, Typography, TextField, Button } from "@mui/material"
+import { Grid, Typography, TextField, Button, Link } from "@mui/material"
+import { Google } from "@mui/icons-material"
+import { AuthLayout } from "../Layout/AuthLayout"
 
 
 export const LoginPage = () => {
   return (
-    <Grid
-      container
-      spacing = { 0 }
-      //direction = "column"
-      alignItems = "center"
-      justifyContent= "center"
-      sx = {{minHeight:'100vh', padding: 4, backgroundColor: 'primary.main'}}    
-    >
-      <Grid
-        item
-        className="box-shadow"
-        xs = {12}  
-        md={6}
-        sx = {{borderRadius: 2, padding: 3, backgroundColor: 'white'}}      
-      >
-        <Typography variant='h5' sx={{mb:3}}>Login </Typography>
-
-        <form>
+    <AuthLayout title='Login'>
+      <form>
           <Grid item xs={12} sx={{mt:2}}>
             <TextField
               label="Correo"
@@ -47,14 +34,22 @@ export const LoginPage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button variant='contained' fullWidth>
-                Registrar
+                <Google/>
+                <Typography sx={{ml:1}}>Google</Typography>
               </Button>
+            </Grid>
+
+            <Grid container direction='row' justifyContent='end'>
+                <Link component={ RouterLink } color='inherit' to='/auth/register'>
+                  Crear cuenta
+                </Link>
             </Grid>
 
           </Grid>
         </form>
-      </Grid>
 
-    </Grid>
+    </AuthLayout>
+        
+      
   )
 }

@@ -1,7 +1,11 @@
-import { Typography } from "@mui/material"
+import { InsuranceLayout } from "../Layout/InsuranceLayout"
+import { NothingSelectedView } from "../Views"
 
 export const InsurancePage = () => {
   return (
-    <Typography  variant='h1'>InsurancePage</Typography>
+
+    <InsuranceLayout>
+      <NothingSelectedView/>
+    </InsuranceLayout>
   )
 }
