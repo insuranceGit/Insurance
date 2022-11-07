@@ -57,7 +57,7 @@ export const FormPage = () => {
     }, []);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/marital_states`).then((res) => {
+        axios.get(`http://localhost:3001/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
         });
     }, []);
