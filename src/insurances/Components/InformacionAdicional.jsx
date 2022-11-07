@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const InformacionAdicional = () => {
+export const InformacionAdicional = ({handleInputChange}) => {
     const[nationality, setNationality] = useState([]);
     const[maritialState, setMaritialState] = useState([]);
     const[gender, setGender] = useState([]);
@@ -38,15 +38,21 @@ export const InformacionAdicional = () => {
                 <input
                     type="date"
                     id="dateBirth"
+                    name="dateBirth"
+                    onChange={handleInputChange}
+
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    required
+                    
                 />
                 </div>
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Nacionalidad</label>
                     <select 
-                    required
+                    
                     id="nationality" 
+                    name="nationality"
+                    onChange={handleInputChange}
+
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
                     {nationality.map((item) => {
@@ -59,8 +65,11 @@ export const InformacionAdicional = () => {
                         Estado civil
                     </label>
                     <select 
-                    required
-                    id="maritalStates" 
+                    
+                    id="maritalStates"
+                    name="maritalStates" 
+                    onChange={handleInputChange}
+
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
                     {maritialState.map((item)=>{
@@ -73,8 +82,11 @@ export const InformacionAdicional = () => {
                         Genero
                     </label>
                     <select 
-                    required
+                    
                     id="gender" 
+                    name="gender"
+                    onChange={handleInputChange}
+
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
                     {gender.map((item) => {
@@ -87,8 +99,10 @@ export const InformacionAdicional = () => {
                         Departamento residencia
                     </label>
                     <select 
-                    required
-                    id="department" 
+                    
+                    id="department"
+                    name="department" 
+                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
                     <option value="Cundinamarca">Cundinamarca</option>
@@ -101,15 +115,18 @@ export const InformacionAdicional = () => {
                     <input
                     type="number"
                     id="phone"
+                    name="phone"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="1-000-000"
                     maxLength={7}
-                    required
+                    onChange={handleInputChange}
                     />
                 </div>
                 <div class="flex justify-center items-center mb-4">
                     <input 
                     id="sendEmail"
+                    name="sendEmail"
+                    onChange={handleInputChange}
                     type="checkbox"
                     value="" 
                     className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
@@ -123,8 +140,10 @@ export const InformacionAdicional = () => {
                         Tipo de contrato
                     </label>
                     <select 
-                    required
+                    
                     id="contractType" 
+                    name="contractType"
+                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
                     <option value="Fijo">Fijo</option>
@@ -137,11 +156,13 @@ export const InformacionAdicional = () => {
                     <input
                     type="number"
                     id="hoursWorkedMonth"
+                    name="hoursWorkedMonth"
+                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="000"
                     maxLength={3}
                     min={1}
-                    required
+                    
                     />
                 </div>
             </div>

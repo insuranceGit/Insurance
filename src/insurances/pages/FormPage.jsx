@@ -9,6 +9,47 @@ export const FormPage = () => {
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
 
+    const [datos, setDatos] = useState({
+        id_documentType: '',
+        document: '',
+        first_name:'',
+        second_name: '',
+        first_last_name: '',
+        second_last_name:'',
+        id_municipality: '',
+        address: '',
+        cellphone:'',
+        email: '',
+        eps: '',
+        regimen:'',
+        ips: '',
+        job: '',
+        salary:'',
+        dateAdmission: '',
+        dateBirth: '',
+        nationality: '',
+        maritalStates: '',
+        gender: '',
+        department: '',
+        phone: '',
+        sendEmail: '',
+        contractType: '',
+        hoursWorkedMonth: ''        
+    })
+
+    const handleInputChange = (event) => {        
+        setDatos({
+            ...datos,
+            [event.target.name] : event.target.value
+        })
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        alert('enviando datos...   \n' + datos + ' ')
+        console.log(datos)
+    }
+
     useEffect(() => {
         axios.get(`http://localhost:3001/api/type_identifications`).then((res) => {
         setDocumentType(res.data.data);
@@ -21,9 +62,11 @@ export const FormPage = () => {
         });
     }, []);
 
+    
+
   return (
     <InsuranceLayout>
-        <form className="border border-gray-300 p-6 rounded-lg">
+        <form className="border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit}>
             <h1 className="text-4xl text-blue-700">Solicitud de afiliación</h1>
             <hr />
             <br />
@@ -33,11 +76,13 @@ export const FormPage = () => {
                 Tipo de documento
                 </label>
                 <select
-                required
-                id="documentType"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                
+                id="id_documentType"
+                name="id_documentType"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                onChange={handleInputChange}
                 >
-                <option selected></option>
                 {documentType.map((item) => {
                     return <option value={item._id}>{item.name}</option>;
                 })}
@@ -50,9 +95,12 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="document"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                name="document"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
-                required
+                onChange={handleInputChange}
+                
                 />
             </div>
             <div>
@@ -62,9 +110,11 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_name"
+                name="first_name"
+                onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"
-                required
+                
                 />
             </div>
             <div>
@@ -74,9 +124,11 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_name"
+                name="second_name"
+                onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
-                required
+                
                 />
             </div>
             <div>
@@ -86,9 +138,12 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_last_name"
+                name="first_last_name"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer apellido"
-                required
+                
                 />
             </div>
             <div>
@@ -98,9 +153,12 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_last_name"
+                name="second_last_name"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
-                required
+                
                 />
             </div>
             <div>
@@ -108,11 +166,13 @@ export const FormPage = () => {
                 Municipio residencia
                 </label>
                 <select
-                required
-                id="municipality"
+                
+                id="id_municipality"
+                name="id_municipality"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                <option selected></option>
                 {municipiality.map((item) => {
                     return <option value={item._id}>{item.name}</option>;
                 })}
@@ -125,9 +185,12 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="address"
+                name="address"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Dirección completa sin símbolos"
-                required
+                
                 />
             </div>
             <div>
@@ -137,10 +200,13 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="cellphone"
+                name="cellphone"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
                 maxLength={10}
-                required
+                
                 />
             </div>
             <div>
@@ -150,9 +216,12 @@ export const FormPage = () => {
                 <input
                 type="email"
                 id="email"
+                name="email"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="@email.com"
-                required
+                
                 />
             </div>
             <div>
@@ -162,9 +231,12 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="eps"
+                name="eps"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
-                required
+                
                 />
             </div>
             <div>
@@ -174,9 +246,12 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="eps"
+                name="regimen"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
-                required
+                
                 />
             </div>
             <div>
@@ -185,10 +260,13 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
-                id="IPS"
+                id="ips"
+                name="ips"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
-                required
+                
                 />
             </div>
             <div>
@@ -197,10 +275,13 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
-                id="Job"
+                id="job"
+                name="job"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingrese el cargo del colaborador"
-                required
+                
                 />
             </div>
             <div>
@@ -209,11 +290,14 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="number"
-                id="Salary"
+                id="salary"
+                name="salary"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
                 placeholder="Ingrese el valor del salario"
-                required
+                
                 />
             </div>
             <div>
@@ -223,13 +307,16 @@ export const FormPage = () => {
                 <input
                 type="date"
                 id="dateAdmission"
+                name="dateAdmission"
+                onChange={handleInputChange}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                required
+                
                 />
             </div>
             </div>
 
-            <InformacionAdicional />
+            <InformacionAdicional handleInputChange={handleInputChange} />
 
             <button
             type="submit"
