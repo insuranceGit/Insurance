@@ -6,38 +6,41 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export const FormPage = () => {
+    const [documentType, setDocumentType] = useState([]);
+    const [municipiality, setMunicipiality] = useState([]);
 
-  const [civil, setCivil] =  useState([]);
-  
-  useEffect(() => {    
-    axios
-      .get(`http://localhost:3001/api/marital_states`)
-      .then((res) => {
-        setCivil(res.data.data);   
-      })
-  }, []);
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/type_identifications`).then((res) => {
+        setDocumentType(res.data.data);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/marital_states`).then((res) => {
+        setMunicipiality(res.data.data);
+        });
+    }, []);
+
   return (
     <InsuranceLayout>
-      <form className="border border-gray-300 p-6 rounded-lg">
-        <h1 className="text-4xl text-blue-700">Solicitud de afiliación</h1>
-        <hr />
-        <br />
-        <div className="grid gap-6 mb-6 md:grid-cols-4">
+        <form className="border border-gray-300 p-6 rounded-lg">
+            <h1 className="text-4xl text-blue-700">Solicitud de afiliación</h1>
+            <hr />
+            <br />
+            <div className="grid gap-6 mb-6 md:grid-cols-4">
             <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900">Tipo de documento</label>
-                <select 
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                Tipo de documento
+                </label>
+                <select
                 required
-                id="documentType" 
-                className="bg-gray-50 border border-gray-300 text-gray-900 
-                text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-                block w-full p-2.5">
-                
-                {civil.map(item => {
-                return <option value={item._id}>
-                {item.name}
-                </option>;
-                })}               
-                
+                id="documentType"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
+                <option selected></option>
+                {documentType.map((item) => {
+                    return <option value={item._id}>{item.name}</option>;
+                })}
                 </select>
             </div>
             <div>
@@ -61,6 +64,7 @@ export const FormPage = () => {
                 id="first_name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"
+                required
                 />
             </div>
             <div>
@@ -101,14 +105,17 @@ export const FormPage = () => {
             </div>
             <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
-                    Municipio residencia
+                Municipio residencia
                 </label>
-                <select 
+                <select
                 required
-                id="municipality" 
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                id="municipality"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
                 <option selected></option>
-                <option value="Bogotá">Bogotá</option>
+                {municipiality.map((item) => {
+                    return <option value={item._id}>{item.name}</option>;
+                })}
                 </select>
             </div>
             <div>
@@ -220,17 +227,17 @@ export const FormPage = () => {
                 required
                 />
             </div>
-        </div>
+            </div>
 
-        <InformacionAdicional />
+            <InformacionAdicional />
 
-        <button
-          type="submit"
-          className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-        >
-          💾
-        </button>
-      </form>
+            <button
+            type="submit"
+            className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            >
+            💾
+            </button>
+        </form>
     </InsuranceLayout>
   );
 };

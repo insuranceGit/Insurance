@@ -1,5 +1,29 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export const InformacionAdicional = () => {
-  return (
+    const[nationality, setNationality] = useState([]);
+    const[maritialState, setMaritialState] = useState([]);
+    const[gender, setGender] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/nationalitys`).then((res) =>{
+        setNationality(res.data.data);
+        });
+    },[]);
+    useEffect(() => {
+        axios.get(`http://localhost:3001/api/marital_states`).then((res)=>{
+        setMaritialState(res.data.data);
+        });
+    },[]);
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/genders`).then((res)=>{
+            setGender(res.data.data);
+        })
+    },[]);
+
+
+    return (
         <>
             <h1 className="text-4xl text-blue-700">
                 Información adicional para afiliación
@@ -25,10 +49,9 @@ export const InformacionAdicional = () => {
                     id="nationality" 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
-                    <option value="CO">Colombia</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>  
-                    <option value="DE">Germany</option>
+                    {nationality.map((item) => {
+                    return <option value={item._id}>{item.name}</option>;
+                    })}
                     </select>
                 </div>
                 <div>
@@ -37,10 +60,12 @@ export const InformacionAdicional = () => {
                     </label>
                     <select 
                     required
-                    id="maritalStatus" 
+                    id="maritalStates" 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
-                    <option value="Casado">Casado</option>
+                    {maritialState.map((item)=>{
+                        return <option value={item._id}>{item.name}</option>;
+                    })}
                     </select>
                 </div>
                 <div>
@@ -52,7 +77,9 @@ export const InformacionAdicional = () => {
                     id="gender" 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected></option>
-                    <option value="Casado">Masculino</option>
+                    {gender.map((item) => {
+                    return <option value={item._id}>{item.name}</option>;
+                    })}
                     </select>
                 </div>
                 <div>
