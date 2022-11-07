@@ -23,17 +23,17 @@ export const FormPage = () => {
         eps: '',
         regimen:'',
         ips: '',
-        job: '',
+        id_job: '',
         salary:'',
         dateAdmission: '',
         dateBirth: '',
-        nationality: '',
-        maritalStates: '',
-        gender: '',
-        department: '',
+        id_nationality: '',
+        id_maritalStates: '',
+        id_gender: '',
+        id_department: '',
         phone: '',
         sendEmail: '',
-        contractType: '',
+        id_contractType: '',
         hoursWorkedMonth: ''        
     })
 
