@@ -103,6 +103,20 @@ export const InformacionAdicional = () => {
                     <option value="Fijo">Fijo</option>
                     </select>
                 </div>
+                <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">
+                    Horas Laboradas Mes
+                    </label>
+                    <input
+                    type="number"
+                    id="hoursWorkedMonth"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="000"
+                    maxLength={3}
+                    min={1}
+                    required
+                    />
+                </div>
             </div>
         </>
     );  
