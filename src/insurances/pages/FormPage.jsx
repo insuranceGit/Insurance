@@ -2,8 +2,20 @@ import { InsuranceLayout } from "../Layout/InsuranceLayout";
 import { Grid, Typography } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
 import { InformacionAdicional } from "../Components";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export const FormPage = () => {
+
+  const [civil, setCivil] =  useState([]);
+  
+  useEffect(() => {    
+    axios
+      .get(`http://localhost:3001/api/marital_states`)
+      .then((res) => {
+        setCivil(res.data.data);   
+      })
+  }, []);
   return (
     <InsuranceLayout>
       <form className="border border-gray-300 p-6 rounded-lg">
@@ -16,11 +28,16 @@ export const FormPage = () => {
                 <select 
                 required
                 id="documentType" 
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected></option>
-                <option value="Cédula">Cédula</option>
-                <option value="NIT">NIT</option>
-                <option value="Cédula Extranjería">Cédula Extranjería</option>
+                className="bg-gray-50 border border-gray-300 text-gray-900 
+                text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+                block w-full p-2.5">
+                
+                {civil.map(item => {
+                return <option value={item._id}>
+                {item.name}
+                </option>;
+                })}               
+                
                 </select>
             </div>
             <div>
