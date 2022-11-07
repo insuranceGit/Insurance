@@ -5,6 +5,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
     const[nationality, setNationality] = useState([]);
     const[maritialState, setMaritialState] = useState([]);
     const[gender, setGender] = useState([]);
+    const[department, setDepartment] = useState([]);
+    const[contractType, setContractType] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:3001/api/nationalitys`).then((res) =>{
@@ -19,6 +21,16 @@ export const InformacionAdicional = ({handleInputChange}) => {
     useEffect(()=>{
         axios.get(`http://localhost:3001/api/genders`).then((res)=>{
             setGender(res.data.data);
+        })
+    },[]);
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/departments`).then((res)=>{
+            setDepartment(res.data.data);
+        })
+    },[]);
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/type_contracts`).then((res)=>{
+            setContractType(res.data.data);
         })
     },[]);
 
@@ -54,9 +66,9 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
+                    <option ></option>
                     {nationality.map((item) => {
-                    return <option value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item._id}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -71,9 +83,9 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
+                    <option ></option>
                     {maritialState.map((item)=>{
-                        return <option value={item._id}>{item.name}</option>;
+                        return <option key={item._id} value={item._id}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -88,9 +100,9 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
+                    <option ></option>
                     {gender.map((item) => {
-                    return <option value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item._id}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -104,8 +116,10 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     name="department" 
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
-                    <option value="Cundinamarca">Cundinamarca</option>
+                    <option ></option>
+                    {department.map((item) => {
+                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    })}
                     </select>
                 </div>
                 <div>
@@ -122,7 +136,7 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     onChange={handleInputChange}
                     />
                 </div>
-                <div class="flex justify-center items-center mb-4">
+                <div className="flex justify-center items-center mb-4">
                     <input 
                     id="sendEmail"
                     name="sendEmail"
@@ -145,8 +159,10 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     name="contractType"
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected></option>
-                    <option value="Fijo">Fijo</option>
+                    <option ></option>
+                    {contractType.map((item) => {
+                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    })}
                     </select>
                 </div>
                 <div>
