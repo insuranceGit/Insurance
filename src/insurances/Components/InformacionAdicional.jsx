@@ -61,8 +61,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">Nacionalidad</label>
                     <select 
                     
-                    id="nationality" 
-                    name="nationality"
+                    id="id_nationality" 
+                    name="id_nationality"
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -78,8 +78,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     </label>
                     <select 
                     
-                    id="maritalStates"
-                    name="maritalStates" 
+                    id="id_maritalStates"
+                    name="id_maritalStates" 
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -95,8 +95,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     </label>
                     <select 
                     
-                    id="gender" 
-                    name="gender"
+                    id="id_gender" 
+                    name="id_gender"
                     onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -112,8 +112,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     </label>
                     <select 
                     
-                    id="department"
-                    name="department" 
+                    id="id_department"
+                    name="id_department" 
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -155,8 +155,8 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     </label>
                     <select 
                     
-                    id="contractType" 
-                    name="contractType"
+                    id="id_contractType" 
+                    name="id_contractType"
                     onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
