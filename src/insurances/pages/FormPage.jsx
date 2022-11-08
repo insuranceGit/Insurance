@@ -3,12 +3,19 @@ import { Grid, Typography } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
 import { InformacionAdicional } from "../Components";
 import React, { useEffect, useState } from "react";
+import { useForm } from 'react-hook-form';
 import axios from "axios";
 
 export const FormPage = () => {
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
+    const {register, errors, handleSubmit} = useForm();
 
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+    
+    /*
     const [datos, setDatos] = useState({
         id_documentType: '',
         document: '',
@@ -24,7 +31,7 @@ export const FormPage = () => {
         regimen:'',
         ips: '',
         id_job: '',
-        salary:'',
+        salary: '',
         dateAdmission: '',
         dateBirth: '',
         id_nationality: '',
@@ -44,11 +51,13 @@ export const FormPage = () => {
         })
     }
 
+    /*
     const handleSubmit = (event) => {
         event.preventDefault();
         alert('enviando datos...   \n' + datos + ' ')
         console.log(datos)
     }
+    */
 
     useEffect(() => {
         axios.get(`http://localhost:3001/api/type_identifications`).then((res) => {
@@ -66,7 +75,7 @@ export const FormPage = () => {
 
   return (
     <InsuranceLayout>
-        <form className="border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit}>
+        <form className="border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl text-blue-700">Solicitud de afiliación</h1>
             <hr />
             <br />
@@ -81,7 +90,7 @@ export const FormPage = () => {
                 name="id_documentType"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                onChange={handleInputChange}
+                {...register("id_documentType")}
                 >
                 {documentType.map((item) => {
                     return <option key={item._id} value={item._id}>{item.name}</option>;
@@ -99,9 +108,12 @@ export const FormPage = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
-                onChange={handleInputChange}
-                
+               
+                {...register("document", {
+                    valueAsNumber: true,
+                })}
                 />
+                 
             </div>
             <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -111,7 +123,6 @@ export const FormPage = () => {
                 type="text"
                 id="first_name"
                 name="first_name"
-                onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"
                 
@@ -125,7 +136,6 @@ export const FormPage = () => {
                 type="text"
                 id="second_name"
                 name="second_name"
-                onChange={handleInputChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
                 
@@ -139,7 +149,6 @@ export const FormPage = () => {
                 type="text"
                 id="first_last_name"
                 name="first_last_name"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer apellido"
@@ -154,7 +163,6 @@ export const FormPage = () => {
                 type="text"
                 id="second_last_name"
                 name="second_last_name"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
@@ -169,7 +177,6 @@ export const FormPage = () => {
                 
                 id="id_municipality"
                 name="id_municipality"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
@@ -186,7 +193,6 @@ export const FormPage = () => {
                 type="text"
                 id="address"
                 name="address"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Dirección completa sin símbolos"
@@ -201,7 +207,6 @@ export const FormPage = () => {
                 type="number"
                 id="cellphone"
                 name="cellphone"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
@@ -217,7 +222,6 @@ export const FormPage = () => {
                 type="email"
                 id="email"
                 name="email"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="@email.com"
@@ -232,7 +236,6 @@ export const FormPage = () => {
                 type="text"
                 id="eps"
                 name="eps"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
@@ -247,7 +250,6 @@ export const FormPage = () => {
                 type="text"
                 id="eps"
                 name="regimen"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
@@ -262,7 +264,6 @@ export const FormPage = () => {
                 type="text"
                 id="ips"
                 name="ips"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
@@ -277,7 +278,6 @@ export const FormPage = () => {
                 type="text"
                 id="job"
                 name="job"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingrese el cargo del colaborador"
@@ -292,7 +292,6 @@ export const FormPage = () => {
                 type="number"
                 id="salary"
                 name="salary"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
@@ -308,7 +307,6 @@ export const FormPage = () => {
                 type="date"
                 id="dateAdmission"
                 name="dateAdmission"
-                onChange={handleInputChange}
 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 
@@ -316,7 +314,7 @@ export const FormPage = () => {
             </div>
             </div>
 
-            <InformacionAdicional handleInputChange={handleInputChange} />
+            <InformacionAdicional register={register} />
 
             <button
             type="submit"

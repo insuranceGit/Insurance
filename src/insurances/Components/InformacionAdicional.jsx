@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const InformacionAdicional = ({handleInputChange}) => {
+export const InformacionAdicional = ({register}) => {
     const[nationality, setNationality] = useState([]);
     const[maritialState, setMaritialState] = useState([]);
     const[gender, setGender] = useState([]);
@@ -51,7 +51,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     type="date"
                     id="dateBirth"
                     name="dateBirth"
-                    onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     
@@ -63,7 +62,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     
                     id="id_nationality" 
                     name="id_nationality"
-                    onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -80,7 +78,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     
                     id="id_maritalStates"
                     name="id_maritalStates" 
-                    onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -97,7 +94,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     
                     id="id_gender" 
                     name="id_gender"
-                    onChange={handleInputChange}
 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -114,7 +110,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     
                     id="id_department"
                     name="id_department" 
-                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {department.map((item) => {
@@ -133,14 +128,13 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="1-000-000"
                     maxLength={7}
-                    onChange={handleInputChange}
+                    {...register("phone")}
                     />
                 </div>
                 <div className="flex justify-center items-center mb-4">
                     <input 
                     id="sendEmail"
                     name="sendEmail"
-                    onChange={handleInputChange}
                     type="checkbox"
                     value="" 
                     className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
@@ -157,7 +151,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     
                     id="id_contractType" 
                     name="id_contractType"
-                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {contractType.map((item) => {
@@ -173,7 +166,6 @@ export const InformacionAdicional = ({handleInputChange}) => {
                     type="number"
                     id="hoursWorkedMonth"
                     name="hoursWorkedMonth"
-                    onChange={handleInputChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="000"
                     maxLength={3}
