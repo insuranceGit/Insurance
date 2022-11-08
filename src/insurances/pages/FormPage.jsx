@@ -11,15 +11,19 @@ export const FormPage = () => {
     const [municipiality, setMunicipiality] = useState([]);
     const {register, errors, handleSubmit} = useForm();
 
+
     const onSubmit = (data) => {
-        console.log(data)
+        
         axios.post('http://localhost:3001/api/load_massives', data)
         .then(function (response) {
         console.log(response);
+        return window.location.href ='/load';
+
         })
         .catch(function (error) {
         console.log(error);
         });
+        
     }   
 
     useEffect(() => {
