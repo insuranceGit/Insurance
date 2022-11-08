@@ -13,6 +13,13 @@ export const FormPage = () => {
 
     const onSubmit = (data) => {
         console.log(data)
+        axios.post('http://localhost:3001/api/load_massives', data)
+        .then(function (response) {
+        console.log(response);
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
     }   
 
     useEffect(() => {
