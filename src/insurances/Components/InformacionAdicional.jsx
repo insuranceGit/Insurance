@@ -12,28 +12,25 @@ export const InformacionAdicional = ({register}) => {
         axios.get(`http://localhost:3001/api/nationalitys`).then((res) =>{
         setNationality(res.data.data);
         });
-    },[]);
-    useEffect(() => {
+
         axios.get(`http://localhost:3001/api/marital_states`).then((res)=>{
         setMaritialState(res.data.data);
         });
-    },[]);
-    useEffect(()=>{
+
         axios.get(`http://localhost:3001/api/genders`).then((res)=>{
             setGender(res.data.data);
         })
-    },[]);
-    useEffect(()=>{
+
         axios.get(`http://localhost:3001/api/departments`).then((res)=>{
             setDepartment(res.data.data);
         })
-    },[]);
-    useEffect(()=>{
+
         axios.get(`http://localhost:3001/api/type_contracts`).then((res)=>{
             setContractType(res.data.data);
         })
-    },[]);
 
+    },[]);
+    
 
     return (
         <>

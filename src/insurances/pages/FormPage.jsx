@@ -13,65 +13,17 @@ export const FormPage = () => {
 
     const onSubmit = (data) => {
         console.log(data)
-    }
-    
-    /*
-    const [datos, setDatos] = useState({
-        id_documentType: '',
-        document: '',
-        first_name:'',
-        second_name: '',
-        first_last_name: '',
-        second_last_name:'',
-        id_municipality: '',
-        address: '',
-        cellphone:'',
-        email: '',
-        eps: '',
-        regimen:'',
-        ips: '',
-        id_job: '',
-        salary: '',
-        dateAdmission: '',
-        dateBirth: '',
-        id_nationality: '',
-        id_maritalStates: '',
-        id_gender: '',
-        id_department: '',
-        phone: '',
-        sendEmail: '',
-        id_contractType: '',
-        hoursWorkedMonth: ''        
-    })
-
-    const handleInputChange = (event) => {        
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value
-        })
-    }
-
-    /*
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert('enviando datos...   \n' + datos + ' ')
-        console.log(datos)
-    }
-    */
+    }   
 
     useEffect(() => {
         axios.get(`http://localhost:3001/api/type_identifications`).then((res) => {
         setDocumentType(res.data.data);
         });
-    }, []);
 
-    useEffect(() => {
         axios.get(`http://localhost:3001/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
         });
-    }, []);
-
-    
+    }, []);    
 
   return (
     <InsuranceLayout>
