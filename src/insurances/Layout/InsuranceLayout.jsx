@@ -1,5 +1,5 @@
 import { Box , Toolbar} from "@mui/material"
-import { SideBar, NavBar } from "../Components";
+import { SideBar, NavBar } from "../components";
 const drawerWidth = 240;
 
 export const InsuranceLayout = ( { children }) => {

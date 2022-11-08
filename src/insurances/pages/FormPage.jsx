@@ -1,7 +1,7 @@
-import { InsuranceLayout } from "../Layout/InsuranceLayout";
+import { InsuranceLayout } from "../layout/InsuranceLayout";
 import { Grid, Typography } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
-import { InformacionAdicional } from "../Components";
+import { InformacionAdicional } from "../components";
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from "axios";

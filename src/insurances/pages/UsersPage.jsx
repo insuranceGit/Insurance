@@ -1,4 +1,4 @@
-import { InsuranceLayout } from "../Layout/InsuranceLayout"
+import { InsuranceLayout } from "../layout/InsuranceLayout"
 import { Grid, Typography } from "@mui/material"
 import { People } from "@mui/icons-material"
 
