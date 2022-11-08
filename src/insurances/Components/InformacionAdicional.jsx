@@ -50,21 +50,20 @@ export const InformacionAdicional = ({register}) => {
                 <input
                     type="date"
                     id="dateBirth"
-                    name="dateBirth"
-
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    
+                    {...register("dateBirth", {
+                        valueAsDate: true,
+                    })}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"                    
                 />
                 </div>
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900">Nacionalidad</label>
                     <select 
-                    
                     id="id_nationality" 
                     name="id_nationality"
-
+                    {...register("id_nationality")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option ></option>
+                    <option></option>
                     {nationality.map((item) => {
                     return <option key={item._id} value={item._id}>{item.name}</option>;
                     })}
@@ -74,11 +73,9 @@ export const InformacionAdicional = ({register}) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                         Estado civil
                     </label>
-                    <select 
-                    
+                    <select                     
                     id="id_maritalStates"
-                    name="id_maritalStates" 
-
+                    {...register("id_maritalStates")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {maritialState.map((item)=>{
@@ -90,11 +87,9 @@ export const InformacionAdicional = ({register}) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                         Genero
                     </label>
-                    <select 
-                    
+                    <select                     
                     id="id_gender" 
-                    name="id_gender"
-
+                    {...register("id_gender")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {gender.map((item) => {
@@ -106,10 +101,9 @@ export const InformacionAdicional = ({register}) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                         Departamento residencia
                     </label>
-                    <select 
-                    
+                    <select                     
                     id="id_department"
-                    name="id_department" 
+                    {...register("id_department")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {department.map((item) => {
@@ -124,7 +118,9 @@ export const InformacionAdicional = ({register}) => {
                     <input
                     type="number"
                     id="phone"
-                    name="phone"
+                    {...register("phone", {
+                        valueAsNumber: true,
+                    })}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="1-000-000"
                     maxLength={7}
@@ -133,9 +129,9 @@ export const InformacionAdicional = ({register}) => {
                 </div>
                 <div className="flex justify-center items-center mb-4">
                     <input 
-                    id="sendEmail"
-                    name="sendEmail"
                     type="checkbox"
+                    id="sendEmail"
+                    {...register("sendEmail")}
                     value="" 
                     className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                     <label 
@@ -147,10 +143,9 @@ export const InformacionAdicional = ({register}) => {
                     <label className="block mb-2 text-sm font-medium text-gray-900">
                         Tipo de contrato
                     </label>
-                    <select 
-                    
+                    <select                     
                     id="id_contractType" 
-                    name="id_contractType"
+                    {...register("id_contractType")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {contractType.map((item) => {
@@ -165,12 +160,13 @@ export const InformacionAdicional = ({register}) => {
                     <input
                     type="number"
                     id="hoursWorkedMonth"
-                    name="hoursWorkedMonth"
+                    {...register("hoursWorkedMonth", {
+                        valueAsNumber: true
+                    })}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="000"
                     maxLength={3}
-                    min={1}
-                    
+                    min={1}                    
                     />
                 </div>
             </div>
