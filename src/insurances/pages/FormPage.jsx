@@ -14,7 +14,7 @@ export const FormPage = () => {
 
     const onSubmit = (data) => {
         
-        axios.post('http://localhost:3001/api/load_massives', data)
+        axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
         .then(function (response) {
         console.log(response);
         return window.location.href ='/load';
@@ -27,11 +27,11 @@ export const FormPage = () => {
     }   
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/type_identifications`).then((res) => {
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/type_identifications`).then((res) => {
         setDocumentType(res.data.data);
         });
 
-        axios.get(`http://localhost:3001/api/municipialitys`).then((res) => {
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
         });
     }, []);    
