@@ -24,7 +24,7 @@ export const LoginPage = () => {
                                     alt="logo"
                                 />
                                 <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">
-                                    Somos AIR Seguros
+                                    Somos AIR SAS
                                 </h4>
                             </div>
                             <form className="">

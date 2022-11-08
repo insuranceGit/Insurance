@@ -13,6 +13,8 @@ export const FormPage = () => {
 
 
     const onSubmit = (data) => {
+        // console.log(data);
+        // return 
         
         axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
         .then(function (response) {
@@ -54,7 +56,7 @@ export const FormPage = () => {
                 >
                 <option></option>
                 {documentType.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                 })}
                 </select>
             </div>
@@ -135,7 +137,7 @@ export const FormPage = () => {
                 >                
                 <option></option>
                 {municipiality.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                 })}
                 </select>
             </div>

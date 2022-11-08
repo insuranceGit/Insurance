@@ -62,7 +62,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option></option>
                     {nationality.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -76,7 +76,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {maritialState.map((item)=>{
-                        return <option key={item._id} value={item._id}>{item.name}</option>;
+                        return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -90,7 +90,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {gender.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -104,7 +104,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {department.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
                     </select>
                 </div>
@@ -121,7 +121,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                     placeholder="1-000-000"
                     maxLength={7}
-                    {...register("phone")}
+                    min={1}
                     />
                 </div>
                 <div className="flex justify-center items-center mb-4">
@@ -146,7 +146,7 @@ export const InformacionAdicional = ({register}) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
                     {contractType.map((item) => {
-                    return <option key={item._id} value={item._id}>{item.name}</option>;
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
                     </select>
                 </div>
