@@ -36,14 +36,12 @@ export const FormPage = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                 Tipo de documento
                 </label>
-                <select
-                
+                <select                
                 id="id_documentType"
-                name="id_documentType"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 {...register("id_documentType")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
+                <option></option>
                 {documentType.map((item) => {
                     return <option key={item._id} value={item._id}>{item.name}</option>;
                 })}
@@ -56,16 +54,13 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="document"
-                name="document"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Identificación"
-               
                 {...register("document", {
                     valueAsNumber: true,
                 })}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Identificación"
                 />
-                 
+                
             </div>
             <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -74,10 +69,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_name"
-                name="first_name"
+                {...register("first_name")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Ingresa tu primer nombre"
-                
+                placeholder="Ingresa tu primer nombre"                
                 />
             </div>
             <div>
@@ -87,7 +81,7 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_name"
-                name="second_name"
+                {...register("second_name")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
                 
@@ -100,8 +94,7 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_last_name"
-                name="first_last_name"
-
+                {...register("first_last_name")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer apellido"
                 
@@ -114,8 +107,7 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_last_name"
-                name="second_last_name"
-
+                {...register("second_last_name")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
                 
@@ -125,13 +117,12 @@ export const FormPage = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                 Municipio residencia
                 </label>
-                <select
-                
+                <select                
                 id="id_municipality"
-                name="id_municipality"
-
+                {...register("id_municipality")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                >
+                >                
+                <option></option>
                 {municipiality.map((item) => {
                     return <option key={item._id} value={item._id}>{item.name}</option>;
                 })}
@@ -144,11 +135,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="address"
-                name="address"
-
+                {...register("address")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Dirección completa sin símbolos"
-                
+                placeholder="Dirección completa sin símbolos"                
                 />
             </div>
             <div>
@@ -158,12 +147,12 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="cellphone"
-                name="cellphone"
-
+                {...register("cellphone", {
+                    valueAsNumber: true,
+                })}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
-                maxLength={10}
-                
+                maxLength={10}               
                 />
             </div>
             <div>
@@ -173,11 +162,9 @@ export const FormPage = () => {
                 <input
                 type="email"
                 id="email"
-                name="email"
-
+                {...register("email")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="@email.com"
-                
+                placeholder="@email.com"                
                 />
             </div>
             <div>
@@ -187,11 +174,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="eps"
-                name="eps"
-
+                {...register("eps")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder=""
-                
+                placeholder=""                
                 />
             </div>
             <div>
@@ -200,9 +185,8 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
-                id="eps"
-                name="regimen"
-
+                id="eps_Regime"
+                {...register("eps_Regime")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
                 
@@ -215,11 +199,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="ips"
-                name="ips"
-
+                {...register("ips")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder=""
-                
+                placeholder=""                
                 />
             </div>
             <div>
@@ -229,11 +211,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="job"
-                name="job"
-
+                {...register("job")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Ingrese el cargo del colaborador"
-                
+                placeholder="Ingrese el cargo del colaborador"                
                 />
             </div>
             <div>
@@ -243,12 +223,12 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="salary"
-                name="salary"
-
+                {...register("salary", {
+                    valueAsNumber: true,
+                })}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
-                placeholder="Ingrese el valor del salario"
-                
+                placeholder="Ingrese el valor del salario"                
                 />
             </div>
             <div>
@@ -258,14 +238,14 @@ export const FormPage = () => {
                 <input
                 type="date"
                 id="dateAdmission"
-                name="dateAdmission"
-
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                
+                {...register("dateAdmission", {
+                    valueAsDate: true,
+                })}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"                
                 />
             </div>
             </div>
-
+            
             <InformacionAdicional register={register} />
 
             <button
