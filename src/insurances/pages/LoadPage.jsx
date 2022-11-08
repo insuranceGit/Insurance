@@ -9,7 +9,7 @@ export const LoadPage = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/load_massives`).then((res) => {
+    axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives`).then((res) => {
       setMassive(res.data.data);
       console.log(res.data.data)
     });    
