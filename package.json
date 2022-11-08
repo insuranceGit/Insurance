@@ -28,13 +28,5 @@
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.1",
     "vite": "^3.1.0"
-  },
-<<<<<<< HEAD
-  "engines": {
-    "node": "16.x"
-=======
-  "engines":{
-    "node":"16.x"
->>>>>>> 6dac8a0c4571c53626f9704538973d9eb470395d
   }
 }
