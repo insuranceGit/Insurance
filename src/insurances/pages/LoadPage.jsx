@@ -5,6 +5,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import * as XLSX from 'xlsx';
 import { read, utils, writeFileXLSX } from 'xlsx';
+import { Link } from 'react-router-dom';
 
 
 export const LoadPage = () => {
@@ -86,24 +87,28 @@ export const LoadPage = () => {
 
     return (
         <InsuranceLayout>
-            <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
-                <span>Exportar</span>
-            </button>
-            <form>
-                <input type="file" onChange={(e) => {
-                    const file = e.target.files[0]
-                    readExcel(file);
-                }}></input>
-            </form>
 
-            <br />
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
+                        <span>Exportar</span>
+                    </button>
+                </div>
+            
+                <div>
+                    <input class=" form-control  w-full h-auto  text-white bg-blue-900    rounded
+                    cursor-pointer focus:outline-none font-bold py-1 px-6
+                    " id="file_input" 
+                    type="file" onChange={(e) => {
+                        const file = e.target.files[0]
+                        readExcel(file);
+                    }}/>
+                </div>
+            </div>
 
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-
-
-
                 <table className="w-full text-sm text-left text-gray-900">
                     <thead className="text-xs text-white uppercase bg-[#493bc5]">
                         <tr>
@@ -161,7 +166,7 @@ export const LoadPage = () => {
                                     {item.salary}
                                 </td>
                                 <td className="py-4 px-6">
-                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</a>
+                                    <Link to="/form" state={{ id: `${item._id}` }} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</Link>
                                 </td>
                             </tr>
                         })}

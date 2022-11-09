@@ -5,16 +5,20 @@ import { InformacionAdicional } from "../components";
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { useLocation } from 'react-router-dom'
 
 export const FormPage = () => {
+    const location = useLocation()
+    const { id } = location.state != null ? location.state : '0';
+    
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
+    const [user, setUser] = useState([]);
+
     const {register, errors, handleSubmit} = useForm();
 
 
     const onSubmit = (data) => {
-        // console.log(data);
-        // return 
         
         axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
         .then(function (response) {
@@ -28,21 +32,33 @@ export const FormPage = () => {
         
     }   
 
-    useEffect(() => {
-        axios.get(`https://airsegurosbackend.herokuapp.com/api/type_identifications`).then((res) => {
-        setDocumentType(res.data.data);
+    useEffect(() => {      
+       
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
+        setUser(res.data.data);
         });
+
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
         });
-    }, []);    
+    }, [id]);  
+
+    useEffect(() => {
+
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/type_identifications`).then((res) => {
+        setDocumentType(res.data.data);
+        });
+    }, []);
+    
+    
 
   return (
     <InsuranceLayout>
         <form className="border border-gray-300 p-6 rounded-lg" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-4xl text-blue-700">Solicitud de afiliación</h1>
             <hr />
+            
             <br />
             <div className="grid gap-6 mb-6 md:grid-cols-4">
             <div>
@@ -70,6 +86,8 @@ export const FormPage = () => {
                 {...register("document", {
                     valueAsNumber: true,
                 })}
+
+                value = {user.document}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
                 />
