@@ -9,14 +9,20 @@ import { useLocation } from 'react-router-dom'
 
 export const FormPage = () => {
     const location = useLocation()
-    const { id } = location.state != null ? location.state : '0';
-    
+    const { id } = location.state != null ? location.state : '0';    
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
     const [user, setUser] = useState([]);
-
+    const [document, setDocument] = useState([]);
+    const [first_name, setFirst_name] = useState([]);
+    const [second_name, setSecond_name] = useState([]);
+    const [first_last_name, setFirst_last_name] = useState([]);
+    const [second_last_name, setSecond_last_name] = useState([]);
+    const [address, setAddress] = useState([]);
+    const [cellphone, setCellphone] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [salary, setSalary] = useState([]);
     const {register, errors, handleSubmit} = useForm();
-
 
     const onSubmit = (data) => {
 
@@ -47,7 +53,18 @@ export const FormPage = () => {
     useEffect(() => {      
        
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
-        setUser(res.data.data);
+            
+            console.log('Hola');
+            setUser(res.data.data);
+            setDocument(res.data.data.document);
+            setFirst_name(res.data.data.first_name);
+            setSecond_name(res.data.data.second_name);
+            setFirst_last_name(res.data.data.first_last_name);
+            setSecond_last_name(res.data.data.second_last_name);
+            setAddress(res.data.data.address);
+            setCellphone(res.data.data.cellphone);
+            setEmail(res.data.data.email);
+            setSalary(res.data.data.salary);
         });
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
@@ -95,7 +112,8 @@ export const FormPage = () => {
                 {...register("document", {
                     valueAsNumber: true,
                 })}
-                value = {user.document}
+                value = {document}
+                onChange={(e)=> {setDocument(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
                 />
@@ -109,7 +127,8 @@ export const FormPage = () => {
                 type="text"
                 id="first_name"
                 {...register("first_name")}
-                value = {user.first_name}
+                value = {first_name}
+                onChange={(e) => {setFirst_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"                
                 />
@@ -122,7 +141,8 @@ export const FormPage = () => {
                 type="text"
                 id="second_name"
                 {...register("second_name")}
-                value = {user.second_name}
+                value = {second_name}
+                onChange={(e) => {setSecond_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
                 
@@ -136,10 +156,10 @@ export const FormPage = () => {
                 type="text"
                 id="first_last_name"
                 {...register("first_last_name")}
-                value = {user.first_last_name}
+                value = {first_last_name}
+                onChange={(e) => {setFirst_last_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Ingresa tu primer apellido"
-                
+                placeholder="Ingresa tu primer apellido"                
                 />
             </div>
             <div>
@@ -150,7 +170,8 @@ export const FormPage = () => {
                 type="text"
                 id="second_last_name"
                 {...register("second_last_name")}
-                value = {user.second_last_name}
+                value = {second_last_name}
+                onChange={(e) => {setSecond_last_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
                 
@@ -179,7 +200,8 @@ export const FormPage = () => {
                 type="text"
                 id="address"
                 {...register("address")}
-                value = {user.address}
+                value = {address}
+                onChange={(e)=>{setAddress(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Dirección completa sin símbolos"                
                 />
@@ -194,7 +216,8 @@ export const FormPage = () => {
                 {...register("cellphone", {
                     valueAsNumber: true,
                 })}
-                value = {user.cellphone}
+                value = {cellphone}
+                onChange={(e)=>{setCellphone(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
                 maxLength={10}               
@@ -208,7 +231,8 @@ export const FormPage = () => {
                 type="email"
                 id="email"
                 {...register("email")}
-                value = {user.email}
+                value = {email}
+                onChange={(e)=>{setEmail(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="@email.com"                
                 />
@@ -276,7 +300,8 @@ export const FormPage = () => {
                 {...register("salary", {
                     valueAsNumber: true,
                 })}
-                value = {user.salary}
+                value = {salary}
+                onChange={(e)=>{setSalary(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
                 placeholder="Ingrese el valor del salario"                
@@ -292,6 +317,7 @@ export const FormPage = () => {
                 {...register("dateAdmission", {
                     valueAsDate: true,
                 })}
+                value = {user.dateAdmission}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"                
                 />
             </div>
