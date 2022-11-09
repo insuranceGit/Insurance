@@ -42,12 +42,6 @@ export const FormPage = () => {
             console.log(error);
             });
         }
-
-        
-
-        
-        
-        
     }   
 
     useEffect(() => {      
@@ -55,7 +49,6 @@ export const FormPage = () => {
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
         setUser(res.data.data);
         });
-
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
@@ -67,9 +60,7 @@ export const FormPage = () => {
         axios.get(`https://airsegurosbackend.herokuapp.com/api/type_identifications`).then((res) => {
         setDocumentType(res.data.data);
         });
-    }, []);
-    
-    
+    }, []);   
 
   return (
     <InsuranceLayout>
@@ -88,7 +79,7 @@ export const FormPage = () => {
                 {...register("id_documentType")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                <option></option>
+                <option>{user.id_documentType}</option>
                 {documentType.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                 })}
@@ -104,7 +95,6 @@ export const FormPage = () => {
                 {...register("document", {
                     valueAsNumber: true,
                 })}
-
                 value = {user.document}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
@@ -119,6 +109,7 @@ export const FormPage = () => {
                 type="text"
                 id="first_name"
                 {...register("first_name")}
+                value = {user.first_name}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"                
                 />
@@ -131,6 +122,7 @@ export const FormPage = () => {
                 type="text"
                 id="second_name"
                 {...register("second_name")}
+                value = {user.second_name}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
                 
@@ -144,6 +136,7 @@ export const FormPage = () => {
                 type="text"
                 id="first_last_name"
                 {...register("first_last_name")}
+                value = {user.first_last_name}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer apellido"
                 
@@ -157,6 +150,7 @@ export const FormPage = () => {
                 type="text"
                 id="second_last_name"
                 {...register("second_last_name")}
+                value = {user.second_last_name}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
                 
@@ -171,7 +165,7 @@ export const FormPage = () => {
                 {...register("id_municipality")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >                
-                <option></option>
+                <option>{user.id_municipality}</option>
                 {municipiality.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                 })}
@@ -185,6 +179,7 @@ export const FormPage = () => {
                 type="text"
                 id="address"
                 {...register("address")}
+                value = {user.address}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Dirección completa sin símbolos"                
                 />
@@ -199,6 +194,7 @@ export const FormPage = () => {
                 {...register("cellphone", {
                     valueAsNumber: true,
                 })}
+                value = {user.cellphone}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
                 maxLength={10}               
@@ -212,6 +208,7 @@ export const FormPage = () => {
                 type="email"
                 id="email"
                 {...register("email")}
+                value = {user.email}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="@email.com"                
                 />
@@ -224,6 +221,7 @@ export const FormPage = () => {
                 type="text"
                 id="eps"
                 {...register("eps")}
+                value = {user.eps}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""                
                 />
@@ -236,6 +234,7 @@ export const FormPage = () => {
                 type="text"
                 id="regimen"
                 {...register("regimen")}
+                value = {user.regimen}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
                 
@@ -249,6 +248,7 @@ export const FormPage = () => {
                 type="text"
                 id="ips"
                 {...register("ips")}
+                value = {user.ips}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""                
                 />
@@ -261,6 +261,7 @@ export const FormPage = () => {
                 type="text"
                 id="id_job"
                 {...register("id_job")}
+                value = {user.id_job}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingrese el cargo del colaborador"                
                 />
@@ -275,6 +276,7 @@ export const FormPage = () => {
                 {...register("salary", {
                     valueAsNumber: true,
                 })}
+                value = {user.salary}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
                 placeholder="Ingrese el valor del salario"                
