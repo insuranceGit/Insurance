@@ -32,7 +32,7 @@ export const FormPage = () => {
             });
 
         }else{
-            axios.put('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
+            axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`)
             .then(function (response) {
             console.log(response);
             return window.location.href ='/load';
