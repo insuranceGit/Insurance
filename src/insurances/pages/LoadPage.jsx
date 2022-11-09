@@ -68,7 +68,7 @@ export const LoadPage = () => {
                 const wb = XLSX.read(bufferArray, { type: 'buffer' });
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
-                const data = XLSX.utils.sheet_to_json(ws);
+                const data = XLSX.utils.sheet_to_json(ws, {origin: "A3"});
                 resolve(data)
             }
 
