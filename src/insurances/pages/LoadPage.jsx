@@ -69,7 +69,7 @@ export const LoadPage = () => {
                 const wb = XLSX.read(bufferArray, { type: 'buffer' });
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
-                const data = XLSX.utils.sheet_to_json(ws);
+                const data = XLSX.utils.sheet_to_json(ws, {origin: "A3"});
                 resolve(data)
             }
 
@@ -79,8 +79,17 @@ export const LoadPage = () => {
 
         })
 
-        promise.then((d) => {
-            console.log(d)
+        promise.then((data) => {
+            console.log(data)
+            axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
+            .then(function (response) {
+            console.log(response);
+            return window.location.href ='/load';
+    
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
         })
     }
 
@@ -142,7 +151,7 @@ export const LoadPage = () => {
 
 
                         {massive.map((item) => {
-                            return <tr className="bg-white border-b hover:bg-[#ebffa1]">
+                            return <tr key={item._id} className="bg-white border-b hover:bg-[#ebffa1]">
                                 <td className="p-4 w-4">
                                     <div className="flex items-center">
                                         <input id="checkbox-table-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />

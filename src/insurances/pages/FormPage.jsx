@@ -216,8 +216,8 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
-                id="eps_Regime"
-                {...register("eps_Regime")}
+                id="regimen"
+                {...register("regimen")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
                 
@@ -241,8 +241,8 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
-                id="job"
-                {...register("job")}
+                id="id_job"
+                {...register("id_job")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingrese el cargo del colaborador"                
                 />
