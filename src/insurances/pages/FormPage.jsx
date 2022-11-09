@@ -19,16 +19,34 @@ export const FormPage = () => {
 
 
     const onSubmit = (data) => {
-        
-        axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
-        .then(function (response) {
-        console.log(response);
-        return window.location.href ='/load';
 
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
+        if( id == '0'){
+            axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
+            .then(function (response) {
+            console.log(response);
+            return window.location.href ='/load';
+
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+
+        }else{
+            axios.put('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
+            .then(function (response) {
+            console.log(response);
+            return window.location.href ='/load';
+
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+        }
+
+        
+
+        
+        
         
     }   
 
