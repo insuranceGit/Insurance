@@ -9,151 +9,166 @@ import { read, utils, writeFileXLSX } from 'xlsx';
 
 export const LoadPage = () => {
 
+    const [massive, setMassive] = useState([]);  
+
+    useEffect(() => {
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives`).then((res) => {
+            setMassive(res.data.data);
+        });
+    }, []);
+
+    const shoot = useCallback(() => {
+
+        var update = massive.map(item => {
+            return {
+
+                'Tipo de Identificación Trabajador': item.id_documentType,
+                'Numero de Identificación Trabajador': item.document,
+                'Primer Apellido Trabajador': item.first_last_name,
+                'Segundo  Apellido Trabajador': item.second_last_name,
+                'Primer Nombre Trabajador': item.first_name,
+                'Segundo Nombre Trabajador': item.second_name,
+                'Fecha Nacimiento Trabajador': item.dateBirth,
+                'Edad Trabajador': '',
+                'Nacionalidad del Trabajador': item.id_nationality,
+                'Estado Civil Trabajador': item.id_maritalStates,
+                'Genero del Trabajador': item.id_gender,
+                'Dirección Residencia Trabajador': item.address,
+                'Nombre Departamento Residencia Trabajador': item.id_department,
+                'Ciudad/Municipio de Residencia Trabajador': item.id_municipality,
+                'Teléfono Fijo Trabajador': item.cellphone,
+                'Teléfono Celular Trabajador': item.cellphone,
+                'E-mail Trabajador': item.email,
+                'Trabajador Autoriza envío de e-Mail': item.sendEmail == "VERDADERO" ? 'Si' : 'No',
+                'Tipo de Contrato': item.id_contractType,
+                'Fecha de Ingreso a la Empresa': item.dateAdmission,
+                'Horas Laboradas Mes': item.hoursWorkedMonth,
+                'Horas Laboradas Diarias': item.hoursWorkedMonth,
+                'Tipo Salario': item.id_contractType,
+                'Valor Salario': item.salary,
+                'Tipo de Actividad': item.id_job
+            };
+        });
+
+        const ws = utils.json_to_sheet(update);
+        const wb = utils.book_new();
+        utils.book_append_sheet(wb, ws, "Data");
+        writeFileXLSX(wb, "Load_massive.xlsx");
+    }, massive[0]);
 
 
 
-const [massive, setMassive] = useState([]);
+    const readExcel = (file) => {
 
-const dataSet2 = [
-    {
-        name: "Johnson",
-        total: 25,
-        remainig: 16
-    },
-    {
-        name: "Josef",
-        total: 25,
-        remainig: 7
-    }
-];
-
-useEffect(() => {
-    axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives`).then((res) => {
-        setMassive(res.data.data);
-        console.log(res.data.data)
-    });
-}, []);
-
-const shoot = useCallback(() => {
-    const ws = utils.json_to_sheet(dataSet2);
-    const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, "Data");
-    writeFileXLSX(wb, "SheetJSReactAoO.xlsx");
-}, dataSet2);
-
-
-
-const readExcel = (file) => {
-
-        const promise = new Promise((resolve, reject) =>{
+        const promise = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
             fileReader.readAsArrayBuffer(file);
-            fileReader.onload=(e)=>{
+            fileReader.onload = (e) => {
                 const bufferArray = e.target.result;
-                const wb = XLSX.read(bufferArray,{type:'buffer'});
+                const wb = XLSX.read(bufferArray, { type: 'buffer' });
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
                 const data = XLSX.utils.sheet_to_json(ws);
                 resolve(data)
             }
 
-            fileReader.onerror = (error) =>{
+            fileReader.onerror = (error) => {
                 reject(error);
             }
 
         })
 
-        promise.then((d)=>{
+        promise.then((d) => {
             console.log(d)
         })
-        
-    
-
-}
+    }
 
 
-return (
-    <InsuranceLayout>
+    return (
+        <InsuranceLayout>
+            <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
+                <span>Exportar</span>
+            </button>
+            <form>
+                <input type="file" onChange={(e) => {
+                    const file = e.target.files[0]
+                    readExcel(file);
+                }}></input>
+            </form>
+
+            <br />
+
+            <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
 
 
-        <button onClick={shoot}>Exportar</button>
 
-        <form>
-            <input type="file" onChange={(e)=>{
-                const file = e.target.files[0]
-                readExcel(file);
-            }}></input>
-        </form>
-
-        <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-            
-            
-
-            <table className="w-full text-sm text-left text-gray-900">
-                <thead className="text-xs text-white uppercase bg-[#493bc5]">
-                    <tr>
-                        <th scope="col" className="p-4">
-                            <div className="flex items-center">
-                                <input id="checkbox-all" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />
-                            </div>
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Nombre de colaborador
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Número documento
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Número de contacto
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Correo
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Salario
-                        </th>
-
-                        <th scope="col" className="py-3 px-6">
-                            Opciones
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-
-
-                    {massive.map((item) => {
-                        return <tr className="bg-white border-b hover:bg-[#ebffa1]">
-                            <td className="p-4 w-4">
+                <table className="w-full text-sm text-left text-gray-900">
+                    <thead className="text-xs text-white uppercase bg-[#493bc5]">
+                        <tr>
+                            <th scope="col" className="p-4">
                                 <div className="flex items-center">
-                                    <input id="checkbox-table-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />
+                                    <input id="checkbox-all" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />
                                 </div>
-                            </td>
-                            <th scope="row" className="py-4 px-6 font-medium text-gray-900">
-                                {item.first_name} {item.second_name} {item.first_last_name} {item.second_last_name}
                             </th>
-                            <td className="py-4 px-6">
+                            <th scope="col" className="py-3 px-6">
+                                Nombre de colaborador
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Número documento
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Número de contacto
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Correo
+                            </th>
+                            <th scope="col" className="py-3 px-6">
+                                Salario
+                            </th>
 
-                                {item.document}
-
-                            </td>
-                            <td className="py-4 px-6">
-                                {item.cellphone}
-                            </td>
-                            <td className="py-4 px-6">
-                                {item.email}
-                            </td>
-                            <td className="py-4 px-6">
-                                {item.salary}
-                            </td>
-                            <td className="py-4 px-6">
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</a>
-                            </td>
+                            <th scope="col" className="py-3 px-6">
+                                Opciones
+                            </th>
                         </tr>
-                    })}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
 
-    </InsuranceLayout>
-)
+
+                        {massive.map((item) => {
+                            return <tr className="bg-white border-b hover:bg-[#ebffa1]">
+                                <td className="p-4 w-4">
+                                    <div className="flex items-center">
+                                        <input id="checkbox-table-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />
+                                    </div>
+                                </td>
+                                <th scope="row" className="py-4 px-6 font-medium text-gray-900">
+                                    {item.first_name} {item.second_name} {item.first_last_name} {item.second_last_name}
+                                </th>
+                                <td className="py-4 px-6">
+
+                                    {item.document}
+
+                                </td>
+                                <td className="py-4 px-6">
+                                    {item.cellphone}
+                                </td>
+                                <td className="py-4 px-6">
+                                    {item.email}
+                                </td>
+                                <td className="py-4 px-6">
+                                    {item.salary}
+                                </td>
+                                <td className="py-4 px-6">
+                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</a>
+                                </td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
+        </InsuranceLayout>
+    )
 }
