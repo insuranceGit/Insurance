@@ -78,16 +78,25 @@ export const LoadPage = () => {
 
         })
 
-        promise.then((d) => {
-            console.log(d)
+        promise.then((data) => {
+            console.log(data)
+            axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
+            .then(function (response) {
+            console.log(response);
+            return window.location.href ='/load';
+    
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
         })
     }
 
 
     return (
         <InsuranceLayout>
-            <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+            <button onClick={shoot} className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                 <span>Exportar</span>
             </button>
@@ -137,7 +146,7 @@ export const LoadPage = () => {
 
 
                         {massive.map((item) => {
-                            return <tr className="bg-white border-b hover:bg-[#ebffa1]">
+                            return <tr key={item._id} className="bg-white border-b hover:bg-[#ebffa1]">
                                 <td className="p-4 w-4">
                                     <div className="flex items-center">
                                         <input id="checkbox-table-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2" />
