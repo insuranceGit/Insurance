@@ -7,22 +7,19 @@ import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { useLocation } from 'react-router-dom'
 
+
+
 export const FormPage = () => {
     const location = useLocation()
     const { id } = location.state != null ? location.state : '0';    
+
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
     const [user, setUser] = useState([]);
-    const [document, setDocument] = useState([]);
-    const [first_name, setFirst_name] = useState([]);
-    const [second_name, setSecond_name] = useState([]);
-    const [first_last_name, setFirst_last_name] = useState([]);
-    const [second_last_name, setSecond_last_name] = useState([]);
-    const [address, setAddress] = useState([]);
-    const [cellphone, setCellphone] = useState([]);
-    const [email, setEmail] = useState([]);
-    const [salary, setSalary] = useState([]);
-    const {register, errors, handleSubmit} = useForm();
+
+    const {register, setValue, errors, handleSubmit} = useForm({ mode: 'onBlur' });
+
+   
 
     const onSubmit = (data) => {
 
@@ -38,9 +35,13 @@ export const FormPage = () => {
             });
 
         }else{
-            axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`, data)
+
+            console.log(data);
+           
+            axios.put(`http://localhost:3001/api/load_massives/${id}`, data)
             .then(function (response) {
             console.log(response);
+            return;
             return window.location.href ='/load';
 
             })
@@ -54,17 +55,24 @@ export const FormPage = () => {
        
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
             
-            console.log('Hola');
             setUser(res.data.data);
-            setDocument(res.data.data.document);
-            setFirst_name(res.data.data.first_name);
-            setSecond_name(res.data.data.second_name);
-            setFirst_last_name(res.data.data.first_last_name);
-            setSecond_last_name(res.data.data.second_last_name);
-            setAddress(res.data.data.address);
-            setCellphone(res.data.data.cellphone);
-            setEmail(res.data.data.email);
-            setSalary(res.data.data.salary);
+            setValue("id_documentType", res.data.data.id_documentType);   
+            setValue("document", res.data.data.document); 
+
+            setValue("first_name", res.data.data.first_name); 
+            setValue("second_name", res.data.data.second_name); 
+            setValue("first_last_name", res.data.data.first_last_name); 
+            setValue("second_last_name", res.data.data.second_last_name); 
+            setValue("id_municipality", res.data.data.id_municipality);
+            setValue("address", res.data.data.address); 
+            setValue("cellphone", res.data.data.cellphone); 
+            setValue("email", res.data.data.email); 
+            setValue("eps", res.data.data.eps);
+            setValue("regimen", res.data.data.regimen); 
+            setValue("ips", res.data.data.ips); 
+            setValue("id_job", res.data.data.id_job); 
+            setValue("salary", res.data.data.salary); 
+            setValue("dateAdmission", res.data.data.dateAdmission); 
         });
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
@@ -93,6 +101,8 @@ export const FormPage = () => {
                 </label>
                 <select                
                 id="id_documentType"
+                name="id_documentType"
+
                 {...register("id_documentType")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
@@ -109,11 +119,11 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="document"
+                name="document"
+
                 {...register("document", {
                     valueAsNumber: true,
                 })}
-                value = {document}
-                onChange={(e)=> {setDocument(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Identificación"
                 />
@@ -126,13 +136,14 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_name"
+                name="first_name"
                 {...register("first_name")}
-                value = {first_name}
-                onChange={(e) => {setFirst_name(e.target.value)}}
+
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer nombre"                
                 />
             </div>
+            
             <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
                 Segundo Nombre
@@ -140,9 +151,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_name"
+                name="second_name"
+
                 {...register("second_name")}
-                value = {second_name}
-                onChange={(e) => {setSecond_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo nombre"
                 
@@ -155,9 +166,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="first_last_name"
+                name="first_last_name"
+
                 {...register("first_last_name")}
-                value = {first_last_name}
-                onChange={(e) => {setFirst_last_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu primer apellido"                
                 />
@@ -169,9 +180,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="second_last_name"
+                name="second_last_name"
+
                 {...register("second_last_name")}
-                value = {second_last_name}
-                onChange={(e) => {setSecond_last_name(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingresa tu segundo apellido"
                 
@@ -183,6 +194,8 @@ export const FormPage = () => {
                 </label>
                 <select                
                 id="id_municipality"
+                name="id_municipality"
+
                 {...register("id_municipality")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >                
@@ -199,9 +212,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="address"
+                name="address"
+
                 {...register("address")}
-                value = {address}
-                onChange={(e)=>{setAddress(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Dirección completa sin símbolos"                
                 />
@@ -213,11 +226,11 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="cellphone"
+                name="cellphone"
+
                 {...register("cellphone", {
                     valueAsNumber: true,
                 })}
-                value = {cellphone}
-                onChange={(e)=>{setCellphone(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="313-100-0000"
                 maxLength={10}               
@@ -230,9 +243,9 @@ export const FormPage = () => {
                 <input
                 type="email"
                 id="email"
+                name="email"
+
                 {...register("email")}
-                value = {email}
-                onChange={(e)=>{setEmail(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="@email.com"                
                 />
@@ -244,8 +257,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="eps"
+                name="eps"
+
                 {...register("eps")}
-                value = {user.eps}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""                
                 />
@@ -257,8 +271,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="regimen"
+                name="regimen"
+
                 {...register("regimen")}
-                value = {user.regimen}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""
                 
@@ -271,8 +286,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="ips"
+                name="ips"
+
                 {...register("ips")}
-                value = {user.ips}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder=""                
                 />
@@ -284,8 +300,9 @@ export const FormPage = () => {
                 <input
                 type="text"
                 id="id_job"
+                name="id_job"
+
                 {...register("id_job")}
-                value = {user.id_job}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Ingrese el cargo del colaborador"                
                 />
@@ -297,11 +314,11 @@ export const FormPage = () => {
                 <input
                 type="number"
                 id="salary"
+                name="salary"
+
                 {...register("salary", {
                     valueAsNumber: true,
                 })}
-                value = {salary}
-                onChange={(e)=>{setSalary(e.target.value)}}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 min={1}
                 placeholder="Ingrese el valor del salario"                
@@ -314,10 +331,11 @@ export const FormPage = () => {
                 <input
                 type="date"
                 id="dateAdmission"
+                name="dateAdmission"
+
                 {...register("dateAdmission", {
                     valueAsDate: true,
                 })}
-                value = {user.dateAdmission}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"                
                 />
             </div>
