@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 
 export const FormPage = () => {
     const location = useLocation()
-    const { id } = location.state != null ? location.state : undefined;    
+    const { id } = location.state != null ? location.state : '0';    
 
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
