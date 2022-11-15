@@ -9,6 +9,7 @@ export const InformacionAdicional = ({register}) => {
     const[contractType, setContractType] = useState([]);
 
     useEffect(() => {
+
         axios.get(`https://airsegurosbackend.herokuapp.com/api/nationalitys`).then((res) =>{
         setNationality(res.data.data);
         });
@@ -28,6 +29,7 @@ export const InformacionAdicional = ({register}) => {
         axios.get(`https://airsegurosbackend.herokuapp.com/api/type_contracts`).then((res)=>{
             setContractType(res.data.data);
         })
+        
 
     },[]);
     
@@ -71,7 +73,8 @@ export const InformacionAdicional = ({register}) => {
                         Estado civil
                     </label>
                     <select                     
-                    id="id_maritalStates"
+                    id="id_maritalStates"                    
+                    name="id_maritalStates"
                     {...register("id_maritalStates")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -99,7 +102,8 @@ export const InformacionAdicional = ({register}) => {
                         Departamento residencia
                     </label>
                     <select                     
-                    id="id_department"
+                    id="id_department"        
+                    name="id_department"
                     {...register("id_department")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -115,6 +119,7 @@ export const InformacionAdicional = ({register}) => {
                     <input
                     type="number"
                     id="phone"
+                    name="phone"
                     {...register("phone", {
                         valueAsNumber: true,
                     })}
@@ -128,6 +133,7 @@ export const InformacionAdicional = ({register}) => {
                     <input 
                     type="checkbox"
                     id="sendEmail"
+                    name="sendEmail"
                     {...register("sendEmail")}
                     value="" 
                     className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
@@ -141,7 +147,8 @@ export const InformacionAdicional = ({register}) => {
                         Tipo de contrato
                     </label>
                     <select                     
-                    id="id_contractType" 
+                    id="id_contractType"       
+                    name="id_contractType" 
                     {...register("id_contractType")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option ></option>
@@ -157,6 +164,7 @@ export const InformacionAdicional = ({register}) => {
                     <input
                     type="number"
                     id="hoursWorkedMonth"
+                    name="hoursWorkedMonth"
                     {...register("hoursWorkedMonth", {
                         valueAsNumber: true
                     })}

@@ -52,6 +52,8 @@ export const FormPage = () => {
     useEffect(() => {      
        
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
+
+            console.log(Date.parse(res.data.data.dateAdmission))
             
             setUser(res.data.data);
             setValue("id_documentType", res.data.data.id_documentType);   
@@ -70,7 +72,15 @@ export const FormPage = () => {
             setValue("ips", res.data.data.ips); 
             setValue("id_job", res.data.data.id_job); 
             setValue("salary", res.data.data.salary); 
-            setValue("dateAdmission", res.data.data.dateAdmission); 
+            setValue("dateAdmission", date.parse(res.data.data.dateAdmission)); 
+            setValue("id_nationality", res.data.data.id_nationality); 
+            setValue("id_maritalStates", res.data.data.id_maritalStates); 
+            setValue("id_gender", res.data.data.id_gender); 
+            setValue("id_department", res.data.data.id_department); 
+            setValue("phone", res.data.data.phone); 
+            setValue("sendEmail", res.data.data.sendEmail); 
+            setValue("id_contractType", res.data.data.id_contractType); 
+            setValue("hoursWorkedMonth", res.data.data.hoursWorkedMonth); 
         });
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
@@ -104,7 +114,7 @@ export const FormPage = () => {
                 {...register("id_documentType")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                <option>{user.id_documentType}</option>
+                <option></option>
                 {documentType.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                 })}
@@ -339,7 +349,11 @@ export const FormPage = () => {
             </div>
             </div>
             
-            <InformacionAdicional register={register} />
+            <InformacionAdicional 
+                register={register}
+                user={user}
+                setValue={setValue}
+            />
 
             <button
             type="submit"
