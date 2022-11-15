@@ -36,9 +36,8 @@ export const FormPage = () => {
 
         }else{
 
-            console.log(data);
            
-            axios.put(`http://localhost:3001/api/load_massives/${id}`, data)
+            axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`, data)
             .then(function (response) {
             console.log(response);
             return window.location.href ='/load';
