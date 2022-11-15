@@ -41,7 +41,6 @@ export const FormPage = () => {
             axios.put(`http://localhost:3001/api/load_massives/${id}`, data)
             .then(function (response) {
             console.log(response);
-            return;
             return window.location.href ='/load';
 
             })
