@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 
 export const FormPage = () => {
     const location = useLocation()
-    const { id } = location.state != null ? location.state : '0';    
+    const { id } = location.state != null ? location.state : undefined;    
 
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
@@ -22,11 +22,12 @@ export const FormPage = () => {
    
 
     const onSubmit = (data) => {
+        
 
-        if( id == '0'){
+        if( id == undefined ){
+            
             axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
             .then(function (response) {
-            console.log(response);
             return window.location.href ='/load';
 
             })
@@ -39,7 +40,6 @@ export const FormPage = () => {
            
             axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`, data)
             .then(function (response) {
-            console.log(response);
             return window.location.href ='/load';
 
             })
