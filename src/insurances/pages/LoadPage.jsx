@@ -24,7 +24,7 @@ export const LoadPage = () => {
             let date = new Date(item.dateAdmission);
             let dateAdmission = date.toISOString().split('T')[0].split("-").join('');
 
-            date = new Date(res.data.data.dateBirth);
+            date = new Date(item.dateBirth);
             let dateBirth = date.toISOString().split('T')[0].split("-").join('');
 
             return {
@@ -104,23 +104,35 @@ export const LoadPage = () => {
         <InsuranceLayout>
 
             <div className="grid gap-6 mb-6 md:grid-cols-2">
-                <div>
-                    <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <div className="col-start-1 col-end-3">
+                    <input className=" 
+                    file:bg-gradient-to-b
+                    file:from-blue-900
+                    file:to-blue-900
+                    file:px-4
+                    file:py-2
+                    file:border-none
+                    file:rounded
+                    file:text-white
+                    file:cursor-pointer
+                    font-bold
+                    text-white
+                    " 
+                    id="file_input" 
+                    type="file" onChange={(e) => {
+                        const file = e.target.files[0]
+                        readExcel(file);
+                    }}/>
+                </div>
+                <div className="col-end-7 col-span-2">
+                    <button onClick={shoot} className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                         <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                         <span>Exportar</span>
                     </button>
                 </div>
             
-                <div>
-                    <input class=" form-control  w-full h-auto  text-white bg-blue-900    rounded
-                    cursor-pointer focus:outline-none font-bold py-1 px-6
-                    " id="file_input" 
-                    type="file" onChange={(e) => {
-                        const file = e.target.files[0]
-                        readExcel(file);
-                    }}/>
-                </div>
+                
             </div>
 
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
