@@ -49,6 +49,8 @@ export const InformacionAdicional = ({register}) => {
                 <input
                     type="date"
                     id="dateBirth"
+                    name="dateBirth"
+
                     {...register("dateBirth", {
                         valueAsDate: true,
                     })}

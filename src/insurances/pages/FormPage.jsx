@@ -11,8 +11,7 @@ import { useLocation } from 'react-router-dom'
 
 export const FormPage = () => {
     const location = useLocation()
-    const { id } = location.state != null ? location.state : '0';    
-
+    const { id } = location.state != null ? location.state : '0';  
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
     const [user, setUser] = useState([]);
@@ -35,9 +34,8 @@ export const FormPage = () => {
             console.log(error);
             });
 
-        }else{
+        }else{      
 
-           
             axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`, data)
             .then(function (response) {
             return window.location.href ='/load';
@@ -53,8 +51,14 @@ export const FormPage = () => {
        
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
 
-            console.log(Date.parse(res.data.data.dateAdmission))
-            
+        
+            let date = new Date(res.data.data.dateAdmission);
+            let dateAdmission = date.toISOString().split('T')[0];
+
+            date = new Date(res.data.data.dateBirth);
+            let dateBirth = date.toISOString().split('T')[0];
+          
+
             setUser(res.data.data);
             setValue("id_documentType", res.data.data.id_documentType);   
             setValue("document", res.data.data.document); 
@@ -72,7 +76,7 @@ export const FormPage = () => {
             setValue("ips", res.data.data.ips); 
             setValue("id_job", res.data.data.id_job); 
             setValue("salary", res.data.data.salary); 
-            setValue("dateAdmission", date.parse(res.data.data.dateAdmission)); 
+            setValue("dateAdmission", dateAdmission); 
             setValue("id_nationality", res.data.data.id_nationality); 
             setValue("id_maritalStates", res.data.data.id_maritalStates); 
             setValue("id_gender", res.data.data.id_gender); 
@@ -81,6 +85,8 @@ export const FormPage = () => {
             setValue("sendEmail", res.data.data.sendEmail); 
             setValue("id_contractType", res.data.data.id_contractType); 
             setValue("hoursWorkedMonth", res.data.data.hoursWorkedMonth); 
+            setValue("dateBirth", dateBirth); 
+
         });
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {

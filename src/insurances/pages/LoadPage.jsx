@@ -21,6 +21,12 @@ export const LoadPage = () => {
     const shoot = useCallback(() => {
 
         var update = massive.map(item => {
+            let date = new Date(item.dateAdmission);
+            let dateAdmission = date.toISOString().split('T')[0].split("-").join('');
+
+            date = new Date(res.data.data.dateBirth);
+            let dateBirth = date.toISOString().split('T')[0].split("-").join('');
+
             return {
 
                 'Tipo de Identificación Trabajador': item.id_documentType,
@@ -42,7 +48,7 @@ export const LoadPage = () => {
                 'E-mail Trabajador': item.email,
                 'Trabajador Autoriza envío de e-Mail': item.sendEmail == "VERDADERO" ? 'Si' : 'No',
                 'Tipo de Contrato': item.id_contractType,
-                'Fecha de Ingreso a la Empresa': item.dateAdmission,
+                'Fecha de Ingreso a la Empresa': dateAdmission,
                 'Horas Laboradas Mes': item.hoursWorkedMonth,
                 'Horas Laboradas Diarias': item.hoursWorkedMonth,
                 'Tipo Salario': item.id_contractType,
@@ -99,15 +105,15 @@ export const LoadPage = () => {
 
             <div className="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
-                    <button onClick={shoot} className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                        <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                    <button onClick={shoot} class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                         <span>Exportar</span>
                     </button>
                 </div>
             
                 <div>
-                    <input className=" form-control  w-full h-auto  text-white bg-blue-900    rounded
+                    <input class=" form-control  w-full h-auto  text-white bg-blue-900    rounded
                     cursor-pointer focus:outline-none font-bold py-1 px-6
                     " id="file_input" 
                     type="file" onChange={(e) => {
@@ -175,6 +181,7 @@ export const LoadPage = () => {
                                     {item.salary}
                                 </td>
                                 <td className="py-4 px-6">
+                                {/* component={ RouterLink } to='/load' */}
                                     <Link to="/form" state={{ id: `${item._id}` }} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</Link>
                                 </td>
                             </tr>
