@@ -35,7 +35,7 @@ export const LoadPage = () => {
                 'Segundo  Apellido Trabajador': item.second_last_name,
                 'Primer Nombre Trabajador': item.first_name,
                 'Segundo Nombre Trabajador': item.second_name,
-                'Fecha Nacimiento Trabajador': item.dateBirth,
+                'Fecha Nacimiento Trabajador': dateBirth,
                 'Edad Trabajador': '',
                 'Nacionalidad del Trabajador': item.id_nationality,
                 'Estado Civil Trabajador': item.id_maritalStates,
