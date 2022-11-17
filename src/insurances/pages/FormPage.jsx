@@ -5,7 +5,7 @@ import { InformacionAdicional } from "../components";
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -18,7 +18,7 @@ export const FormPage = () => {
 
     const {register, setValue, errors, handleSubmit} = useForm({ mode: 'onBlur' });
 
-   
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         
@@ -38,7 +38,7 @@ export const FormPage = () => {
 
             axios.put(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`, data)
             .then(function (response) {
-            return window.location.href ='/load';
+                navigate('/load', { replace: true });
 
             })
             .catch(function (error) {
