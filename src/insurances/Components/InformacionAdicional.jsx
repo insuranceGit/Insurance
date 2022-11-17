@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const InformacionAdicional = ({register}) => {
+export const InformacionAdicional = ({register, user}) => {
     const[nationality, setNationality] = useState([]);
     const[maritialState, setMaritialState] = useState([]);
     const[gender, setGender] = useState([]);
