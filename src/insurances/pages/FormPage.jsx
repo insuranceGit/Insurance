@@ -60,7 +60,7 @@ export const FormPage = () => {
             
 
                 setUser(res.data.data);
-                setValue("id_documentType", res.data.data.id_documentType,  { shouldValidate: true });   
+                setValue("id_documentType", {label: res.data.data.id_documentType , value: res.data.data.id_documentType});   
                 console.log(res.data.data.id_documentType)
                 setValue("document", res.data.data.document); 
 
