@@ -61,6 +61,7 @@ export const FormPage = () => {
 
             setUser(res.data.data);
             setValue("id_documentType", res.data.data.id_documentType);   
+            console.log(res.data.data.id_documentType)
             setValue("document", res.data.data.document); 
 
             setValue("first_name", res.data.data.first_name); 
