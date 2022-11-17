@@ -48,47 +48,50 @@ export const FormPage = () => {
     }   
 
     useEffect(() => {      
+
+        if( id != undefined ){
        
-        axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
+            axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
 
-        
-            let date = new Date(res.data.data.dateAdmission);
-            let dateAdmission = date.toISOString().split('T')[0];
+            
+                let date = new Date(res.data.data.dateAdmission);
+                let dateAdmission = date.toISOString().split('T')[0];
 
-            date = new Date(res.data.data.dateBirth);
-            let dateBirth = date.toISOString().split('T')[0];
-          
+                date = new Date(res.data.data.dateBirth);
+                let dateBirth = date.toISOString().split('T')[0];
+            
 
-            setUser(res.data.data);
-            setValue("id_documentType", res.data.data.id_documentType);   
-            console.log(res.data.data.id_documentType)
-            setValue("document", res.data.data.document); 
+                setUser(res.data.data);
+                setValue("id_documentType", res.data.data.id_documentType);   
+                console.log(res.data.data.id_documentType)
+                setValue("document", res.data.data.document); 
 
-            setValue("first_name", res.data.data.first_name); 
-            setValue("second_name", res.data.data.second_name); 
-            setValue("first_last_name", res.data.data.first_last_name); 
-            setValue("second_last_name", res.data.data.second_last_name); 
-            setValue("id_municipality", res.data.data.id_municipality);
-            setValue("address", res.data.data.address); 
-            setValue("cellphone", res.data.data.cellphone); 
-            setValue("email", res.data.data.email); 
-            setValue("eps", res.data.data.eps);
-            setValue("regimen", res.data.data.regimen); 
-            setValue("ips", res.data.data.ips); 
-            setValue("id_job", res.data.data.id_job); 
-            setValue("salary", res.data.data.salary); 
-            setValue("dateAdmission", dateAdmission); 
-            setValue("id_nationality", res.data.data.id_nationality); 
-            setValue("id_maritalStates", res.data.data.id_maritalStates); 
-            setValue("id_gender", res.data.data.id_gender); 
-            setValue("id_department", res.data.data.id_department); 
-            setValue("phone", res.data.data.phone); 
-            setValue("sendEmail", res.data.data.sendEmail); 
-            setValue("id_contractType", res.data.data.id_contractType); 
-            setValue("hoursWorkedMonth", res.data.data.hoursWorkedMonth); 
-            setValue("dateBirth", dateBirth); 
+                setValue("first_name", res.data.data.first_name); 
+                setValue("second_name", res.data.data.second_name); 
+                setValue("first_last_name", res.data.data.first_last_name); 
+                setValue("second_last_name", res.data.data.second_last_name); 
+                setValue("id_municipality", res.data.data.id_municipality);
+                setValue("address", res.data.data.address); 
+                setValue("cellphone", res.data.data.cellphone); 
+                setValue("email", res.data.data.email); 
+                setValue("eps", res.data.data.eps);
+                setValue("regimen", res.data.data.regimen); 
+                setValue("ips", res.data.data.ips); 
+                setValue("id_job", res.data.data.id_job); 
+                setValue("salary", res.data.data.salary); 
+                setValue("dateAdmission", dateAdmission); 
+                setValue("id_nationality", res.data.data.id_nationality); 
+                setValue("id_maritalStates", res.data.data.id_maritalStates); 
+                setValue("id_gender", res.data.data.id_gender); 
+                setValue("id_department", res.data.data.id_department); 
+                setValue("phone", res.data.data.phone); 
+                setValue("sendEmail", res.data.data.sendEmail); 
+                setValue("id_contractType", res.data.data.id_contractType); 
+                setValue("hoursWorkedMonth", res.data.data.hoursWorkedMonth); 
+                setValue("dateBirth", dateBirth); 
 
-        });
+            });
+        }
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/municipialitys`).then((res) => {
         setMunicipiality(res.data.data);
