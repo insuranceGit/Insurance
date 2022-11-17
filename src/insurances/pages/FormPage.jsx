@@ -27,7 +27,7 @@ export const FormPage = () => {
             
             axios.post('https://airsegurosbackend.herokuapp.com/api/load_massives', data)
             .then(function (response) {
-            return window.location.href ='/load';
+                navigate('/load', { replace: true });
 
             })
             .catch(function (error) {
