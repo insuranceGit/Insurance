@@ -64,7 +64,7 @@ export const InformacionAdicional = ({register}) => {
                     name="id_nationality"
                     {...register("id_nationality")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option></option>
+                    <option>{user.id_nationality}</option>
                     {nationality.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
@@ -79,7 +79,8 @@ export const InformacionAdicional = ({register}) => {
                     name="id_maritalStates"
                     {...register("id_maritalStates")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option ></option>
+                    <option>{user.id_maritalStates}</option>
+
                     {maritialState.map((item)=>{
                         return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
@@ -93,7 +94,8 @@ export const InformacionAdicional = ({register}) => {
                     id="id_gender" 
                     {...register("id_gender")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option ></option>
+                    <option>{user.id_gender}</option>
+
                     {gender.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
@@ -108,7 +110,8 @@ export const InformacionAdicional = ({register}) => {
                     name="id_department"
                     {...register("id_department")} 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option ></option>
+                    <option>{user.id_department}</option>
+
                     {department.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
@@ -153,7 +156,8 @@ export const InformacionAdicional = ({register}) => {
                     name="id_contractType" 
                     {...register("id_contractType")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option ></option>
+                    <option>{user.id_contractType}</option>
+
                     {contractType.map((item) => {
                     return <option key={item._id} value={item.name}>{item.name}</option>;
                     })}
