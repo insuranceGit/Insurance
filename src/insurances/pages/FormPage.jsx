@@ -1,9 +1,11 @@
 import { InsuranceLayout } from "../layout/InsuranceLayout";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Grid, Typography } from "@mui/material";
+import { InsertDriveFile } from "@mui/icons-material";
 import { InformacionAdicional } from "../components";
 import React, { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -60,7 +62,7 @@ export const FormPage = () => {
             
 
                 setUser(res.data.data);
-                setValue("id_documentType", {label: res.data.data.id_documentType , value: res.data.data.id_documentType});   
+                setValue("id_documentType", res.data.data.id_documentType);   
                 console.log(res.data.data.id_documentType)
                 setValue("document", res.data.data.document); 
 
