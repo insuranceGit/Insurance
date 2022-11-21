@@ -12,6 +12,19 @@ export const LoadPage = () => {
 
     const [massive, setMassive] = useState([]);  
 
+    function calcularAños(fecha) {
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+
+        return edad;
+    }
+
     useEffect(() => {
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives`).then((res) => {
             setMassive(res.data.data);
@@ -24,19 +37,23 @@ export const LoadPage = () => {
             let date = new Date(item.dateAdmission);
             let dateAdmission = date.toISOString().split('T')[0].split("-").join('');
 
+            
+
             date = new Date(item.dateBirth);
             let dateBirth = date.toISOString().split('T')[0].split("-").join('');
 
+            let anhos = calcularAños(item.dateBirth);
+
             return {
 
-                'Tipo de Identificación Trabajador': item.id_documentType,
+                'Tipo de Identificación Trabajador': item.id_documentType ,
                 'Numero de Identificación Trabajador': item.document,
                 'Primer Apellido Trabajador': item.first_last_name,
                 'Segundo  Apellido Trabajador': item.second_last_name,
                 'Primer Nombre Trabajador': item.first_name,
                 'Segundo Nombre Trabajador': item.second_name,
                 'Fecha Nacimiento Trabajador': dateBirth,
-                'Edad Trabajador': '',
+                'Edad Trabajador': anhos + 1 ,
                 'Nacionalidad del Trabajador': item.id_nationality,
                 'Estado Civil Trabajador': item.id_maritalStates,
                 'Genero del Trabajador': item.id_gender,
@@ -50,8 +67,8 @@ export const LoadPage = () => {
                 'Tipo de Contrato': item.id_contractType,
                 'Fecha de Ingreso a la Empresa': dateAdmission,
                 'Horas Laboradas Mes': item.hoursWorkedMonth,
-                'Horas Laboradas Diarias': item.hoursWorkedMonth,
-                'Tipo Salario': item.id_contractType,
+                'Horas Laboradas Diarias': item.hoursWorkedMonth / 30,
+                'Tipo Salario': 'Fijo',
                 'Valor Salario': item.salary,
                 'Tipo de Actividad': item.id_job
             };
