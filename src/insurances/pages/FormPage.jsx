@@ -54,19 +54,25 @@ export const FormPage = () => {
             axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
 
             
-                let date = new Date(res.data.data.dateAdmission);
-                let dateAdmission = date.toISOString().split('T')[0];
+                let date ="";
+                let dateAdmission = "";
                 let dateBirth ="";
-                
+
+                if(res.data.data.dateAdmission){
+                    date = new Date(res.data.data.dateAdmission);
+                    dateAdmission = date.toISOString().split('T')[0];
+                }    
+
                 if(res.data.data.dateBirth){
                     date = new Date(res.data.data.dateBirth);
                     dateBirth = date.toISOString().split('T')[0];
-                }             
+                } 
+                
+                console.log(dateAdmission)
             
 
                 setUser(res.data.data);
                 setValue("id_documentType", res.data.data.id_documentType);   
-                console.log(res.data.data.id_documentType)
                 setValue("document", res.data.data.document); 
 
                 setValue("first_name", res.data.data.first_name); 
