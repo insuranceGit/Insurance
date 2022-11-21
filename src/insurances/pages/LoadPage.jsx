@@ -53,14 +53,14 @@ export const LoadPage = () => {
                 'Primer Nombre Trabajador': item.first_name,
                 'Segundo Nombre Trabajador': item.second_name,
                 'Fecha Nacimiento Trabajador': dateBirth,
-                'Edad Trabajador': anhos + 1 ,
+                'Edad Trabajador': anhos ,
                 'Nacionalidad del Trabajador': item.id_nationality,
                 'Estado Civil Trabajador': item.id_maritalStates,
                 'Genero del Trabajador': item.id_gender,
                 'Dirección Residencia Trabajador': item.address,
                 'Nombre Departamento Residencia Trabajador': item.id_department,
                 'Ciudad/Municipio de Residencia Trabajador': item.id_municipality,
-                'Teléfono Fijo Trabajador': item.cellphone,
+                'Teléfono Fijo Trabajador': item.cellphone == "" ? 1111111 : item.cellphone,
                 'Teléfono Celular Trabajador': item.cellphone,
                 'E-mail Trabajador': item.email,
                 'Trabajador Autoriza envío de e-Mail': item.sendEmail == "VERDADERO" ? 'Si' : 'No',
@@ -70,12 +70,55 @@ export const LoadPage = () => {
                 'Horas Laboradas Diarias': item.hoursWorkedMonth / 30,
                 'Tipo Salario': 'Fijo',
                 'Valor Salario': item.salary,
-                'Tipo de Actividad': item.id_job
+                'Tipo de Actividad': item.id_job,
+                'Tipo de Identificación Cónyuge': '',	
+                'Numero de Identificación Cónyuge': '',	
+                'Primer Apellido Cónyuge': '',	
+                'Segundo Apellido Cónyuge': '',	
+                'Primer Nombre Cónyuge': '',	
+                'Segundo Nombre Cónyuge': '',	
+                'Fecha Nacimiento Cónyuge': '',	
+                'Genero del Cónyuge': '',	
+                'Ocupación Cónyuge': '',	
+                'Tipo Identificación Empresa Cónyuge': '',	
+                'Numero Identificación Empresa Cónyuge': '',	
+                'Digito Verificación Empresa Cónyuge': '',	
+                'Razón Social Empresa Cónyuge': '',	
+                'Tipo de Salario Cónyuge': '',	
+                'Salario Básico Cónyuge': '',	
+                'Tipo de Identificación PAC': '',	
+                'Numero de Identificación PAC': '',	
+                'Primer Apellido PAC': '',	
+                'Segundo Apellido PAC': '',	
+                'Primer Nombre PAC': '',	
+                'Segundo Nombre PAC': '',	
+                'Genero PAC': '',	
+                'Fecha Nacimiento PAC': '',	
+                'Parentesco PAC con Titular': ''		
+
             };
         });
 
-        const ws = utils.json_to_sheet(update);
+       
+        let ws = utils.json_to_sheet(update,{ origin: 1});
+
+        utils.sheet_add_json(ws, [
+            {   A: "DATOS DE TRABAJADOR", B: "DATOS DE TRABAJADOR", C: "DATOS DE TRABAJADOR", D: "DATOS DE TRABAJADOR", E: "DATOS DE TRABAJADOR", F: "DATOS DE TRABAJADOR", G: "DATOS DE TRABAJADOR",
+                H: "DATOS DE TRABAJADOR", I: "DATOS DE TRABAJADOR", J: "DATOS DE TRABAJADOR", K: "DATOS DE TRABAJADOR", L: "DATOS DE TRABAJADOR", M: "DATOS DE TRABAJADOR", N: "DATOS DE TRABAJADOR",
+                O: "DATOS DE TRABAJADOR", P: "DATOS DE TRABAJADOR", Q: "DATOS DE TRABAJADOR", R: "DATOS DE TRABAJADOR", S: "DATOS DE TRABAJADOR", T: "DATOS DE TRABAJADOR", U: "DATOS DE TRABAJADOR",
+                V: "DATOS DE TRABAJADOR", W: "DATOS DE TRABAJADOR", X: "DATOS DE TRABAJADOR", Y: "DATOS DE TRABAJADOR", Z: "DATOS CONYUGE", 
+                AA: "DATOS CONYUGE", AB: "DATOS CONYUGE", AC: "DATOS CONYUGE", AD: "DATOS CONYUGE", AE: "DATOS CONYUGE", AF: "DATOS CONYUGE", AG: "DATOS CONYUGE",
+                AH: "DATOS CONYUGE", AI: "DATOS CONYUGE", AJ: "DATOS CONYUGE", AK: "DATOS CONYUGE", AL: "DATOS CONYUGE", AM: "DATOS CONYUGE", AN: "DATOS CONYUGE",
+                AO: "DATOS PERSONA A CARGO", AP: "DATOS PERSONA A CARGO", AQ: "DATOS PERSONA A CARGO", AR: "DATOS PERSONA A CARGO", AS: "DATOS PERSONA A CARGO", AT: "DATOS PERSONA A CARGO", AU: "DATOS PERSONA A CARGO",
+                AV: "DATOS PERSONA A CARGO", AW: "DATOS PERSONA A CARGO"
+             }
+        ], { skipHeader: true, origin: 0});
+
+        
+
         const wb = utils.book_new();
+        console.log(wb)
+
         utils.book_append_sheet(wb, ws, "Data");
         writeFileXLSX(wb, "Load_massive.xlsx");
     };
