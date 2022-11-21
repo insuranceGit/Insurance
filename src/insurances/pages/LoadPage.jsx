@@ -117,7 +117,6 @@ export const LoadPage = () => {
         
 
         const wb = utils.book_new();
-        console.log(wb)
 
         utils.book_append_sheet(wb, ws, "Data");
         writeFileXLSX(wb, "Load_massive.xlsx");
