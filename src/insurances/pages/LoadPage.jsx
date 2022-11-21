@@ -60,7 +60,7 @@ export const LoadPage = () => {
                 'Dirección Residencia Trabajador': item.address,
                 'Nombre Departamento Residencia Trabajador': item.id_department,
                 'Ciudad/Municipio de Residencia Trabajador': item.id_municipality,
-                'Teléfono Fijo Trabajador': item.cellphone == "" ? 1111111 : item.cellphone,
+                'Teléfono Fijo Trabajador': item.phone == "" ? 1111111 : item.cellphone,
                 'Teléfono Celular Trabajador': item.cellphone,
                 'E-mail Trabajador': item.email,
                 'Trabajador Autoriza envío de e-Mail': item.sendEmail == "VERDADERO" ? 'Si' : 'No',
