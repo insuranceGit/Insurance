@@ -56,9 +56,12 @@ export const FormPage = () => {
             
                 let date = new Date(res.data.data.dateAdmission);
                 let dateAdmission = date.toISOString().split('T')[0];
-
-                date = new Date(res.data.data.dateBirth);
-                let dateBirth = date.toISOString().split('T')[0];
+                let dateBirth ="";
+                
+                if(res.data.data.dateBirth){
+                    date = new Date(res.data.data.dateBirth);
+                    dateBirth = date.toISOString().split('T')[0];
+                }             
             
 
                 setUser(res.data.data);
