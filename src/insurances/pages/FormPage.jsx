@@ -86,7 +86,7 @@ export const FormPage = () => {
                 setValue("eps", res.data.data.eps);
                 setValue("regimen", res.data.data.regimen); 
                 setValue("ips", res.data.data.ips); 
-                setValue("position", res.data.data.id_job); 
+                setValue("position", res.data.data.position); 
                 setValue("id_job", res.data.data.id_job); 
                 setValue("salary", res.data.data.salary); 
                 setValue("dateAdmission", dateAdmission); 
