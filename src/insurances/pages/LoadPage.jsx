@@ -50,7 +50,6 @@ export const LoadPage = () => {
                 dateAdmission = dateIsValid(date) ?date.toISOString().split('T')[0].split("-").join(''):'';
             }
             
-            console.log(item.dateBirth)
 
             if(item.dateBirth === null || item.dateBirth === undefined){
                 dateBirth = '';
