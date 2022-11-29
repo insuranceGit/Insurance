@@ -14,6 +14,7 @@ export const FormPage = () => {
     const { id } = location.state != null ? location.state : '0';  
     const [documentType, setDocumentType] = useState([]);
     const [municipiality, setMunicipiality] = useState([]);
+    const [job, setJob] = useState([]);
     const [user, setUser] = useState([]);
 
     const {register, setValue, errors, handleSubmit} = useForm({ mode: 'onBlur' });
@@ -54,18 +55,26 @@ export const FormPage = () => {
             axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives/${id}`).then((res) => {
 
             
-                let date = new Date(res.data.data.dateAdmission);
-                let dateAdmission = date.toISOString().split('T')[0];
+                let date ="";
+                let dateAdmission = "";
+                let dateBirth ="";
 
-                date = new Date(res.data.data.dateBirth);
-                let dateBirth = date.toISOString().split('T')[0];
+                if(res.data.data.dateAdmission){
+                    date = new Date(res.data.data.dateAdmission);
+                    dateAdmission = date.toISOString().split('T')[0];
+                }    
+
+                if(res.data.data.dateBirth){
+                    date = new Date(res.data.data.dateBirth);
+                    dateBirth = date.toISOString().split('T')[0];
+                } 
+                
+                console.log(dateAdmission)
             
 
                 setUser(res.data.data);
                 setValue("id_documentType", res.data.data.id_documentType);   
-                console.log(res.data.data.id_documentType)
                 setValue("document", res.data.data.document); 
-
                 setValue("first_name", res.data.data.first_name); 
                 setValue("second_name", res.data.data.second_name); 
                 setValue("first_last_name", res.data.data.first_last_name); 
@@ -77,6 +86,7 @@ export const FormPage = () => {
                 setValue("eps", res.data.data.eps);
                 setValue("regimen", res.data.data.regimen); 
                 setValue("ips", res.data.data.ips); 
+                setValue("position", res.data.data.id_job); 
                 setValue("id_job", res.data.data.id_job); 
                 setValue("salary", res.data.data.salary); 
                 setValue("dateAdmission", dateAdmission); 
@@ -102,6 +112,13 @@ export const FormPage = () => {
 
         axios.get(`https://airsegurosbackend.herokuapp.com/api/type_identifications`).then((res) => {
         setDocumentType(res.data.data);
+        });
+    }, []);   
+
+    useEffect(() => {
+
+        axios.get(`https://airsegurosbackend.herokuapp.com/api/type_jobs`).then((res) => {
+        setJob(res.data.data);
         });
     }, []);   
 
@@ -317,13 +334,30 @@ export const FormPage = () => {
                 </label>
                 <input
                 type="text"
+                id="position"
+                name="position"
+
+                {...register("position")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                placeholder="Ingrese el cargo del colaborador"                
+                />
+            </div>
+            <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900">
+                Actividad
+                </label>
+                <select                
                 id="id_job"
                 name="id_job"
 
                 {...register("id_job")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Ingrese el cargo del colaborador"                
-                />
+                >
+                <option>{user.id_job}</option>
+                {job.map((item) => {
+                    return <option key={item._id} value={item.name}>{item.name}</option>;
+                })}
+                </select>
             </div>
             <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900">
