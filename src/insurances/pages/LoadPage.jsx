@@ -25,6 +25,10 @@ export const LoadPage = () => {
         return edad;
     }
 
+    function dateIsValid(date) {
+        return !Number.isNaN(new Date(date).getTime());
+    }
+
     useEffect(() => {
         axios.get(`https://airsegurosbackend.herokuapp.com/api/load_massives`).then((res) => {
             setMassive(res.data.data);
@@ -34,15 +38,30 @@ export const LoadPage = () => {
     const shoot = () => {
 
         var update = massive.map(item => {
-            let date = new Date(item.dateAdmission);
-            let dateAdmission = date.toISOString().split('T')[0].split("-").join('');
-
+            let dateAdmission = '';
+            let date = '';
+            let dateBirth = '';
+            let anhos = 0;
             
+            if(item.dateAdmission === null || item.dateAdmission === undefined){
+                dateAdmission = '';
+            }else{
+                date = new Date(item.dateAdmission);
+                dateAdmission = dateIsValid(date) ?date.toISOString().split('T')[0].split("-").join(''):'';
+            }
+            
+            console.log(item.dateBirth)
 
-            date = new Date(item.dateBirth);
-            let dateBirth = date.toISOString().split('T')[0].split("-").join('');
-
-            let anhos = calcularAños(item.dateBirth);
+            if(item.dateBirth === null || item.dateBirth === undefined){
+                dateBirth = '';
+                anhos = '';
+            }else{
+                date = new Date(item.dateBirth);
+                dateBirth = dateIsValid(date) ? date.toISOString().split('T')[0].split("-").join(''): 0;
+    
+                anhos = calcularAños(item.dateBirth);
+            }
+            
 
             return {
 
@@ -67,7 +86,7 @@ export const LoadPage = () => {
                 'Tipo de Contrato': item.id_contractType,
                 'Fecha de Ingreso a la Empresa': dateAdmission,
                 'Horas Laboradas Mes': item.hoursWorkedMonth,
-                'Horas Laboradas Diarias': item.hoursWorkedMonth / 30,
+                'Horas Laboradas Diarias': item.hoursWorkedMonth ?item.hoursWorkedMonth / 30: '',
                 'Tipo Salario': 'Fijo',
                 'Valor Salario': item.salary,
                 'Tipo de Actividad': item.id_job,
@@ -98,6 +117,7 @@ export const LoadPage = () => {
 
             };
         });
+
 
        
         let ws = utils.json_to_sheet(update,{ origin: 1});
