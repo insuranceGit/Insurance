@@ -131,7 +131,7 @@ export const LoadPage = () => {
             fileReader.readAsArrayBuffer(file);
             fileReader.onload = (e) => {
                 const bufferArray = e.target.result;
-                const wb = XLSX.read(bufferArray, { type: 'buffer' });
+                const wb = XLSX.read(bufferArray, { type: 'buffer', cellDates: true });
                 const wsname = wb.SheetNames[0];
                 const ws = wb.Sheets[wsname];
                 const data = XLSX.utils.sheet_to_json(ws, {origin: "A3"});
@@ -143,6 +143,7 @@ export const LoadPage = () => {
             }
 
         })
+
 
         promise.then((data) => {
             console.log(data)
